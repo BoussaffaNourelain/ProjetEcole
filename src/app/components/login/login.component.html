@@ -4,7 +4,7 @@
       <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
     </div>
     <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
-      <h2><br /><span></span><br />Log in</h2>
+      <h2><br /><span></span><br />Se connecter</h2>
     </div>
   </div>
 </section>
@@ -20,7 +20,7 @@
       />
     </div>
     <div class="mb-3">
-      <label class="form-label">Password</label>
+      <label class="form-label">Mot de passe </label>
       <input
         type="password"
         class="form-control"
@@ -28,6 +28,9 @@
         [ngModelOptions]="{ standalone: true }"
       />
     </div>
-    <button type="submit" class="btn btn-primary btn-lg mb-3">Log in</button>
+    <button type="submit" class="btn btn-primary btn-lg mb-3" value="login">
+      Se connecter
+    </button>
   </form>
+  <span style="color: red">{{ errorMsg }}</span>
 </section>

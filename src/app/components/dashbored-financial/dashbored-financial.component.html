@@ -1,0 +1,167 @@
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>
+        Tableau de bord financier
+        <br /><span></span><br />
+      </h2>
+    </div>
+  </div>
+</section>
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active"
+      id="tab1-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#tab1"
+      type="button"
+      role="tab"
+      aria-controls="tab1"
+      aria-selected="true"
+    >
+      Gérer les payements
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="tab2-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#tab2"
+      type="button"
+      role="tab"
+      aria-controls="tab2"
+      aria-selected="false"
+    >
+      Gérer les devis
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="tab3-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#tab3"
+      type="button"
+      role="tab"
+      aria-controls="tab3"
+      aria-selected="false"
+    >
+      Gérer les états financiers/factures
+    </button>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  <div
+    class="tab-pane fade show active"
+    id="tab1"
+    role="tabpanel"
+    aria-labelledby="tab1-tab"
+  >
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <table>
+            <th>identifiant</th>
+            <th>nom</th>
+            <th>prénom</th>
+            <th>email</th>
+            <th>role</th>
+            <th>payement</th>
+            <th>actions</th>
+            <tr *ngFor="let user of usersTab">
+              <ng-container *ngIf="isUserAllowed(user.role)">
+                <td>{{ user._id }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.payement }}</td>
+                <td>
+                  <button type="button" class="btn btn-success">Valider</button>
+                </td>
+              </ng-container>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="tab2"
+    role="tabpanel"
+    aria-labelledby="tab2-tab"
+  >
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <table>
+            <th>id</th>
+            <th>nom du client</th>
+            <th>description du service</th>
+            <th>prix</th>
+            <th>quantitée</th>
+            <th>période de validité</th>
+            <th>actions</th>
+
+            <tr *ngFor="let devis of devisTab">
+              <td>{{ devis._id }}</td>
+              <td>{{ devis.clientName }}</td>
+              <td>{{ devis.productDescription }}</td>
+              <td>{{ devis.price }}</td>
+              <td>{{ devis.quantity }}</td>
+              <td>{{ devis.validityDate }}</td>
+              <td>
+                <button type="button" class="btn btn-success">Display</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-warning">Edit</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="tab3"
+    role="tabpanel"
+    aria-labelledby="tab3-tab"
+  >
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <table>
+            <th>id</th>
+            <th>nom du client</th>
+            <th>date</th>
+            <th>description du service</th>
+            <th>prix</th>
+            <th>methode de payment</th>
+            <th>actions</th>
+            <tr *ngFor="let facture of facturesTab">
+              <td>{{ facture._id }}</td>
+              <td>{{ facture.clientName }}</td>
+              <td>{{ facture.serviceDescription }}</td>
+              <td>{{ facture.nbLearner }}</td>
+              <td>{{ facture.totalPrice }}</td>
+              <td>{{ facture.methodOfPayment }}</td>
+              <td>
+                <button type="button" class="btn btn-success">Display</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-warning">Edit</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

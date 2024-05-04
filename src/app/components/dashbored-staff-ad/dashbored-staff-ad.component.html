@@ -1,0 +1,292 @@
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>
+        Tableau de bord agent administratif
+        <br /><span></span><br />
+      </h2>
+    </div>
+  </div>
+</section>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link active"
+      id="home-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#home-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="home-tab-pane"
+      aria-selected="true"
+    >
+      Gérer les aprenants
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="profile-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#profile-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="profile-tab-pane"
+      aria-selected="false"
+    >
+      Traiter les demandes d'inscription
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="contact-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#contact-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="contact-tab-pane"
+      aria-selected="false"
+    >
+      Gérer les formations
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="session-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#session-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="session-tab-pane"
+      aria-selected="false"
+    >
+      Gérer les sessions des formations
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="request-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#request-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="request-tab-pane"
+      aria-selected="false"
+    >
+      Traiter les demandes de formation
+    </button>
+  </li>
+  <li class="nav-item" role="presentation">
+    <button
+      class="nav-link"
+      id="group-tab"
+      data-bs-toggle="tab"
+      data-bs-target="#group-tab-pane"
+      type="button"
+      role="tab"
+      aria-controls="group-tab-pane"
+      aria-selected="false"
+    >
+      Gérer les groupes
+    </button>
+  </li>
+</ul>
+
+<div class="tab-content" id="myTabContent">
+  <div
+    class="tab-pane fade show active"
+    id="home-tab-pane"
+    role="tabpanel"
+    aria-labelledby="home-tab"
+  >
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <table>
+            <th>Identifiant</th>
+            <th>Nom</th>
+            <th>Prénom</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Actions</th>
+            <tr *ngFor="let user of usersTab">
+              <ng-container *ngIf="isUserAllowed(user.role)">
+                <td>{{ user._id }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>
+                  <button type="button" class="btn btn-success">
+                    Afficher
+                  </button>
+                  <button type="button" class="btn btn-danger">
+                    Supprimer
+                  </button>
+                  <button type="button" class="btn btn-warning">
+                    Modifier
+                  </button>
+                </td>
+              </ng-container>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="profile-tab-pane"
+    role="tabpanel"
+    aria-labelledby="profile-tab"
+  >
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <table>
+            <th>identifiant</th>
+            <th>nom</th>
+            <th>prénom</th>
+            <th>email</th>
+            <th>role</th>
+            <th>statut</th>
+            <th>actions</th>
+            <tr *ngFor="let user of usersTab">
+              <ng-container *ngIf="isUserAllowed(user.role)">
+                <td>{{ user._id }}</td>
+                <td>{{ user.firstName }}</td>
+                <td>{{ user.lastName }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+                <td>{{ user.status }}</td>
+                <td>
+                  <button type="button" class="btn btn-success">Activer</button>
+                  <button type="button" class="btn btn-danger">Bloquer</button>
+                </td>
+              </ng-container>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="contact-tab-pane"
+    role="tabpanel"
+    aria-labelledby="contact-tab"
+  >
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <table>
+            <th>code formation</th>
+            <th>nom</th>
+            <th>durée</th>
+            <th>nombre des participants</th>
+            <th>prix</th>
+            <th>categorie</th>
+            <th>actions</th>
+            <tr *ngFor="let formation of formationsTab">
+              <td>{{ formation._id }}</td>
+              <td>{{ formation.name }}</td>
+              <td>{{ formation.duration }}</td>
+              <td>{{ formation.nbLearner }}</td>
+              <td>{{ formation.price }}</td>
+              <td>{{ formation.category }}</td>
+              <td>
+                <button type="button" class="btn btn-success">Afficher</button>
+                <button type="button" class="btn btn-danger">Effacer</button>
+                <button type="button" class="btn btn-warning">Modifier</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div
+    class="tab-pane fade"
+    id="session-tab-pane"
+    role="tabpanel"
+    aria-labelledby="session-tab"
+  >
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <table>
+            <th>code formation</th>
+            <th>nom</th>
+            <th>durée</th>
+            <th>nombre des participants</th>
+            <th>prix</th>
+            <th>categorie</th>
+            <th>actions</th>
+            <tr *ngFor="let sessionformation of sessionFormationTab">
+              <td>{{ sessionformation._id }}</td>
+              <td>{{ sessionformation.name }}</td>
+              <td>{{ sessionformation.duration }}</td>
+              <td>{{ sessionformation.nbLearner }}</td>
+              <td>{{ sessionformation.price }}</td>
+              <td>{{ sessionformation.category }}</td>
+              <td>
+                <button type="button" class="btn btn-success">Afficher</button>
+                <button type="button" class="btn btn-danger">Effacer</button>
+                <button type="button" class="btn btn-warning">Modifier</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div
+    class="tab-pane fade"
+    id="request-tab-pane"
+    role="tabpanel"
+    aria-labelledby="request-tab"
+  >
+    <!-- Contenu pour Les demandes de formations -->
+  </div>
+
+  <div
+    class="tab-pane fade"
+    id="group-tab-pane"
+    role="tabpanel"
+    aria-labelledby="group-tab"
+  >
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <table>
+            <th>code groupe</th>
+            <th>nom</th>
+            <th>nom du formateur</th>
+            <th>nombre des participants</th>
+            <th>actions</th>
+            <tr *ngFor="let groupe of groupesTab">
+              <td>{{ groupe._id }}</td>
+              <td>{{ groupe.name }}</td>
+              <td>{{ groupe.trainerName }}</td>
+              <td>{{ groupe.nbLearner }}</td>
+              <td>
+                <button type="button" class="btn btn-success">Display</button>
+                <button type="button" class="btn btn-danger">Delete</button>
+                <button type="button" class="btn btn-warning">Edit</button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

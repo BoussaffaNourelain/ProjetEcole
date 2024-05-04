@@ -1,0 +1,136 @@
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>Ajouter une demande de formation <br /><span></span><br /></h2>
+    </div>
+  </div>
+</section>
+
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <form #demandeForm="ngForm" (ngSubmit)="addDemande()">
+          <div class="form-group mb-3">
+            <label class="form-label">Nom </label>
+
+            <input
+              type="text"
+              [(ngModel)]="demande.firstName"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Prénom</label>
+
+            <input
+              type="text"
+              [(ngModel)]="demande.lastName"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Cochez le sexe du interlocuteur </label>
+            <br />
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                [(ngModel)]="demande.sexe"
+                [ngModelOptions]="{ standalone: true }"
+                value="homme"
+                required
+              />
+              Homme
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                [(ngModel)]="demande.sexe"
+                [ngModelOptions]="{ standalone: true }"
+                value="femme"
+                required
+              />
+              Femme
+            </label>
+          </div>
+
+          <div class="form-group mb-3">
+            <label class="form-label">Fonction </label>
+
+            <input
+              type="text"
+              [(ngModel)]="demande.function"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Adresse </label>
+
+            <input
+              type="text"
+              [(ngModel)]="demande.adress"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Date de naissance </label>
+
+            <input
+              type="date"
+              [(ngModel)]="demande.dateOfBirth"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Titre de formation </label>
+
+            <input
+              type="text"
+              [(ngModel)]="demande.titleFormation"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Durée estimée </label>
+
+            <input
+              type="text"
+              [(ngModel)]="demande.duration"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Prix estimé </label>
+
+            <input
+              type="text"
+              [(ngModel)]="demande.priceEstimation"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group">
+            <input
+              type="submit"
+              class="btn btn-primary py-3 px-5"
+              value="Ajouter"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

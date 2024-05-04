@@ -27,29 +27,109 @@
 
     <nav id="navbar" class="navbar">
       <ul>
-        <li><a class="nav-link scrollto active" routerLink="">Home</a></li>
         <li>
-          <a class="nav-link scrollto" routerLink="login">Log in</a>
+          <a class="nav-link scrollto active" routerLink="">Page d'acceuil</a>
         </li>
-        <li class="dropdown">
-          <a routerLink="signup"
-            ><span>Sign up</span> <i class="bi bi-chevron-down"></i
-          ></a>
-          <ul>
-            <li><a routerLink="signupAdmin">Admin</a></li>
-            <li>
-              <a routerLink="signupFinancialAdministrator"
-                >Financial administrator</a
+        <li>
+          <a class="nav-link scrollto" routerLink="seConnecter"
+            >Se connecter
+          </a>
+        </li>
+        <li>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+              >S'inscrire</a
+            >
+            <div class="dropdown-menu m-0">
+              <a routerLink="admin" class="dropdown-item">Administrateur</a>
+              <a routerLink="agentAdministratif" class="dropdown-item"
+                >Agent administratif</a
               >
-            </li>
-            <li><a routerLink="signupLearner"> Learner</a></li>
-            <li><a routerLink="signupTrainer"> Trainer </a></li>
-            <li>
-              <a routerLink="signupAdministrativeStaff">Administrative staff</a>
-            </li>
-          </ul>
+              <a routerLink="financier" class="dropdown-item">Financier</a>
+              <a routerLink="apprenant" class="dropdown-item">Apprenant</a>
+              <a routerLink="formateur" class="dropdown-item">Formateur</a>
+            </div>
+          </div>
         </li>
-        <li><a class="nav-link scrollto" routerLink="trainers">Trainers</a></li>
+        <li>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+              >Tableau de bord</a
+            >
+            <div class="dropdown-menu m-0">
+              <a routerLink="dashboredAdministrateur" class="dropdown-item"
+                >Tableau de bord administrateur
+              </a>
+              <a routerLink="dashboredAgentAdministratif" class="dropdown-item"
+                >Tableau de bord administratif</a
+              >
+              <a routerLink="dashboredFinancier" class="dropdown-item"
+                >Tableau de bord financier</a
+              >
+              <a routerLink="dashboredApprenant" class="dropdown-item"
+                >Tableau de bord apprenant</a
+              >
+              <a routerLink="dashboredFormateur" class="dropdown-item"
+                >Tableau de bord formateur</a
+              >
+            </div>
+          </div>
+        </li>
+        <li>
+          <div class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+              >Tableau de bord</a
+            >
+            <div class="dropdown-menu m-0">
+              <a routerLink="ajouterAdmin" class="dropdown-item"
+                >ajouter un administarteur
+              </a>
+              <a routerLink="ajouterAgentadministratif" class="dropdown-item"
+                >ajouter un agent administartif</a
+              >
+              <a routerLink="ajouterFinancier" class="dropdown-item"
+                >ajouter un financier
+              </a>
+              <a routerLink="affecterApprenantGroupe" class="dropdown-item"
+                >Affecter un apprenant à un ou plusieurs groupes
+              </a>
+              <a routerLink="affecterFormateurFormation" class="dropdown-item"
+                >Affecter un formateur à une formation
+              </a>
+              <a routerLink="affecterFormateurSession" class="dropdown-item"
+                >Affecter un formateur à une ou plusieurs session de formation
+              </a>
+              <a routerLink="ajouterGroupe" class="dropdown-item"
+                >ajouter un groupe</a
+              >
+              <a routerLink="ajouterDevis" class="dropdown-item"
+                >ajouter un devis</a
+              >
+              <a routerLink="ajouterFacture" class="dropdown-item"
+                >ajouter une facture</a
+              >
+              <a routerLink="ajouterFormation" class="dropdown-item"
+                >ajouter une formation
+              </a>
+              <a routerLink="ajouterSession" class="dropdown-item"
+                >ajouter une session de formation
+              </a>
+              <a routerLink="ajouterDemande" class="dropdown-item"
+                >ajouter une demande de formation
+              </a>
+            </div>
+          </div>
+        </li>
+        <li>
+          <a class="nav-link scrollto" routerLink="nosFormations"
+            >Nos formations
+          </a>
+        </li>
+        <li>
+          <a class="nav-link scrollto" routerLink="contactezNous"
+            >Contactez nous
+          </a>
+        </li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle"></i>
     </nav>

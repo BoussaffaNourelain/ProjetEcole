@@ -4,13 +4,26 @@
       <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
     </div>
     <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
-      <h2><br /><span></span><br />Sign up</h2>
+      <h2><br /><span></span><br />S'inscrire</h2>
     </div>
   </div>
 </section>
 <form class="container" [formGroup]="signupForm">
+  <!-- <div class="form-group" style="visibility: hidden">
+    <input
+      type="file"
+      class="form-control"
+      #filePicker
+      (change)="onImageSelected($event)"
+    />
+  </div>
+  <div class="text-center m-3">
+    <button class="btn btn-success" (click)="filePicker.click()">
+      Choisissez votre photo de profil
+    </button>
+  </div> -->
   <div class="mb-3">
-    <label class="form-label">First name</label>
+    <label class="form-label">Nom</label>
     <input type="text" class="form-control" formControlName="firstName" />
   </div>
   <div
@@ -34,7 +47,7 @@
     </div>
   </div>
   <div class="mb-3">
-    <label class="form-label">Last name </label>
+    <label class="form-label">Prénom </label>
     <input type="text" class="form-control" formControlName="lastName" />
   </div>
   <div
@@ -78,26 +91,27 @@
     ></div>
   </div>
   <div class="mb-3">
-    <label class="form-label">Tel</label>
+    <label class="form-label">Téléphone</label>
     <input type="tel" class="form-control" formControlName="tel" />
   </div>
   <div class="mb-3">
-    <label class="form-label">Adress</label>
+    <label class="form-label">Adresse</label>
     <input type="text" class="form-control" formControlName="adress" />
   </div>
   <div class="mb-3">
-    <label class="form-label">Password</label>
+    <label class="form-label">Mot de passe </label>
     <input type="password" class="form-control" formControlName="password" />
   </div>
   <div class="mb-3">
-    <label class="form-label">Confirm password</label>
+    <label class="form-label">Confirmer mot de passe </label>
     <input
       type="password"
       class="form-control"
       formControlName="confirmPassword"
     />
   </div>
+
   <button type="submit" class="btn btn-primary btn-lg mb-3" (click)="signup()">
-    Sign Up
+    S'inscrire
   </button>
 </form>
