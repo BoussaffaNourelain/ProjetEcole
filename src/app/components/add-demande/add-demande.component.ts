@@ -15,18 +15,8 @@ export class AddDemandeComponent implements OnInit {
 
   ngOnInit(): void {}
   addDemande() {
-    // this.dService.addDemande(this.demande).subscribe((response) => {
-    //   console.log('here response ', response.msg);
-    // });
+    this.dService.addDemande(this.demande).subscribe((response) => {
+      console.log('here response ', response.msg);
+    });
   }
-  // addDemande() {
-  //   this.dService.addDemande(this.demande).subscribe(
-  //     (response) => {
-  //       console.log('Demande ajoutée avec succès');
-  //     },
-  //     (error) => {
-  //       console.error("Erreur lors de l'ajout de la demande :", error);
-  //     }
-  //   );
-  // }
 }

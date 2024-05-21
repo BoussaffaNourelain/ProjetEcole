@@ -16,15 +16,18 @@ export class GroupeService {
   }
   //one number
   getGroupeById(id: any) {
-    return this.httpClient.get(`${this.url}/${id}`);
+    return this.httpClient.get<{ groupe: any }>(`${this.url}/${id}`);
   }
-  deleteGroupe(id: number) {
-    return this.httpClient.delete(`${this.url}/${id}`);
+  deleteGroupe(id: string) {
+    return this.httpClient.delete<{ msg: string }>(`${this.url}/${id}`);
   }
   addGroupe(t: any) {
     return this.httpClient.post<{ msg: string }>(this.url, t);
   }
   editGroupe(t: any) {
     return this.httpClient.put(this.url, t);
+  }
+  getGroupesByUserId(userId: string) {
+    return this.httpClient.get<any>(`${this.url}?userId=${userId}`);
   }
 }

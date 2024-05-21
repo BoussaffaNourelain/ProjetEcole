@@ -1,5 +1,6 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -16,8 +17,7 @@ export class UserService {
   }
   login(user: any) {
     return this.http.post<{
-      user: any;
-
+      token: string;
       msg: string;
     }>(this.userUrl + '/seConnecter', user);
   }
@@ -29,5 +29,8 @@ export class UserService {
   }
   deleteUser(id: string) {
     return this.http.delete<{ msg: string }>(`${this.userUrl}/${id}`);
+  }
+  editUser(t: any) {
+    return this.http.put<{ user: any }>(this.userUrl, t);
   }
 }

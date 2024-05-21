@@ -16,13 +16,13 @@ export class FacteurService {
   }
   //one number
   getFacturesById(id: any) {
-    return this.httpClient.get(`${this.url}/${id}`);
+    return this.httpClient.get<{ facture: any }>(`${this.url}/${id}`);
   }
-  deleteFactures(id: number) {
-    return this.httpClient.delete(`${this.url}/${id}`);
+  deleteFactures(id: string) {
+    return this.httpClient.delete<{ msg: string }>(`${this.url}/${id}`);
   }
   addFactures(a: any) {
-    return this.httpClient.post(this.url, a);
+    return this.httpClient.post<{ msg: string }>(this.url, a);
   }
   editFactures(a: any) {
     return this.httpClient.put(this.url, a);

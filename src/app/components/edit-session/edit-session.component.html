@@ -1,0 +1,81 @@
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>
+        Modification des donneés de la formation <br /><span></span><br />
+      </h2>
+    </div>
+  </div>
+</section>
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <form #formationForm="ngForm" (ngSubmit)="editFormation()">
+          <div class="form-group mb-3">
+            <label class="form-label">Nom de la formation </label>
+
+            <input
+              type="text"
+              [(ngModel)]="formation.name"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <label class="form-label">Date du début </label>
+
+          <div class="form-group mb-3">
+            <input
+              type="date"
+              [(ngModel)]="formation.datedebut"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Date de la fin </label>
+
+            <input
+              type="date"
+              [(ngModel)]="formation.datefin"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Nombre d'apprenants </label>
+
+            <input
+              type="number"
+              [(ngModel)]="formation.nbLearner"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Prix</label>
+
+            <input
+              type="text"
+              [(ngModel)]="formation.price"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="submit"
+              class="btn btn-primary py-3 px-5"
+              value="Modifier"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

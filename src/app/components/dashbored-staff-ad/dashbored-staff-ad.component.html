@@ -115,6 +115,9 @@
             <th>Nom</th>
             <th>Prénom</th>
             <th>Email</th>
+            <th>Téléphone</th>
+            <th>Adresse</th>
+
             <th>Role</th>
             <th>Actions</th>
             <tr *ngFor="let user of usersTab">
@@ -123,15 +126,30 @@
                 <td>{{ user.firstName }}</td>
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
+                <td>{{ user.tel }}</td>
+                <td>{{ user.adress }}</td>
+
                 <td>{{ user.role }}</td>
                 <td>
-                  <button type="button" class="btn btn-success">
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="gotoInfo(user._id)"
+                  >
                     Afficher
                   </button>
-                  <button type="button" class="btn btn-danger">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="deleteUser(user._id)"
+                  >
                     Supprimer
                   </button>
-                  <button type="button" class="btn btn-warning">
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    (click)="Edit(user._id)"
+                  >
                     Modifier
                   </button>
                 </td>
@@ -168,8 +186,20 @@
                 <td>{{ user.role }}</td>
                 <td>{{ user.status }}</td>
                 <td>
-                  <button type="button" class="btn btn-success">Activer</button>
-                  <button type="button" class="btn btn-danger">Bloquer</button>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="Valider(user._id)"
+                  >
+                    Valider
+                  </button>
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="deleteUser(user._id)"
+                  >
+                    Supprimer
+                  </button>
                 </td>
               </ng-container>
             </tr>
@@ -190,7 +220,9 @@
           <table>
             <th>code formation</th>
             <th>nom</th>
-            <th>durée</th>
+            <th>date du début</th>
+            <th>date de la fin</th>
+
             <th>nombre des participants</th>
             <th>prix</th>
             <th>categorie</th>
@@ -198,14 +230,34 @@
             <tr *ngFor="let formation of formationsTab">
               <td>{{ formation._id }}</td>
               <td>{{ formation.name }}</td>
-              <td>{{ formation.duration }}</td>
+              <td>{{ formation.datedebut }}</td>
+              <td>{{ formation.datefin }}</td>
+
               <td>{{ formation.nbLearner }}</td>
               <td>{{ formation.price }}</td>
               <td>{{ formation.category }}</td>
               <td>
-                <button type="button" class="btn btn-success">Afficher</button>
-                <button type="button" class="btn btn-danger">Effacer</button>
-                <button type="button" class="btn btn-warning">Modifier</button>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="gotoInfoo(formation._id)"
+                >
+                  Afficher
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="deleteFormation(formation._id)"
+                >
+                  Effacer
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="EditFormation(formation._id)"
+                >
+                  Modifier
+                </button>
               </td>
             </tr>
           </table>
@@ -225,7 +277,9 @@
           <table>
             <th>code formation</th>
             <th>nom</th>
-            <th>durée</th>
+            <th>date du début</th>
+            <th>date de la fin</th>
+
             <th>nombre des participants</th>
             <th>prix</th>
             <th>categorie</th>
@@ -233,14 +287,34 @@
             <tr *ngFor="let sessionformation of sessionFormationTab">
               <td>{{ sessionformation._id }}</td>
               <td>{{ sessionformation.name }}</td>
-              <td>{{ sessionformation.duration }}</td>
+              <td>{{ sessionformation.datedebut }}</td>
+              <td>{{ sessionformation.datefin }}</td>
+
               <td>{{ sessionformation.nbLearner }}</td>
               <td>{{ sessionformation.price }}</td>
               <td>{{ sessionformation.category }}</td>
               <td>
-                <button type="button" class="btn btn-success">Afficher</button>
-                <button type="button" class="btn btn-danger">Effacer</button>
-                <button type="button" class="btn btn-warning">Modifier</button>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="gotoInfooo(sessionformation._id)"
+                >
+                  Afficher
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="deleteSession(sessionformation._id)"
+                >
+                  Effacer
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="EditSession(sessionformation._id)"
+                >
+                  Modifier
+                </button>
               </td>
             </tr>
           </table>
@@ -255,7 +329,46 @@
     role="tabpanel"
     aria-labelledby="request-tab"
   >
-    <!-- Contenu pour Les demandes de formations -->
+    <div class="site-section">
+      <div class="container">
+        <div class="row">
+          <table>
+            <th>id demande</th>
+            <th>nom</th>
+            <th>prénom</th>
+            <th>sexe</th>
+            <th>fonction</th>
+            <th>adresse</th>
+            <th>date de naissance</th>
+            <th>titre de la formation</th>
+            <th>durée estimée</th>
+            <th>prix estimé</th>
+            <th>actions</th>
+            <tr *ngFor="let demande of demandeTab">
+              <td>{{ demande._id }}</td>
+              <td>{{ demande.firstName }}</td>
+              <td>{{ demande.lastName }}</td>
+              <td>{{ demande.sexe }}</td>
+              <td>{{ demande.function }}</td>
+              <td>{{ demande.adress }}</td>
+              <td>{{ demande.dateOfBirth }}</td>
+              <td>{{ demande.titleFormation }}</td>
+              <td>{{ demande.duration }}</td>
+              <td>{{ demande.priceEstimation }}</td>
+              <td>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="deleteDemande(demande._id)"
+                >
+                  Effacer
+                </button>
+              </td>
+            </tr>
+          </table>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div
@@ -272,16 +385,36 @@
             <th>nom</th>
             <th>nom du formateur</th>
             <th>nombre des participants</th>
+
             <th>actions</th>
             <tr *ngFor="let groupe of groupesTab">
               <td>{{ groupe._id }}</td>
               <td>{{ groupe.name }}</td>
               <td>{{ groupe.trainerName }}</td>
               <td>{{ groupe.nbLearner }}</td>
+
               <td>
-                <button type="button" class="btn btn-success">Display</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-warning">Edit</button>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="gotoInfoooo(groupe._id)"
+                >
+                  Afficher
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="deleteGroupe(groupe._id)"
+                >
+                  Supprimer
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="EditGroup(groupe._id)"
+                >
+                  Modifier
+                </button>
               </td>
             </tr>
           </table>

@@ -12,6 +12,7 @@
     </div>
   </div>
 </section>
+
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button
@@ -52,25 +53,11 @@
       aria-controls="contact-tab-pane"
       aria-selected="false"
     >
-      Contact
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="disabled-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#disabled-tab-pane"
-      type="button"
-      role="tab"
-      aria-controls="disabled-tab-pane"
-      aria-selected="false"
-      disabled
-    >
-      Disabled
+      Mes sessions de formations
     </button>
   </li>
 </ul>
+
 <div class="tab-content" id="myTabContent">
   <div
     class="tab-pane fade show active"
@@ -79,7 +66,9 @@
     aria-labelledby="home-tab"
     tabindex="0"
   >
-    ...
+    <ul>
+      <li *ngFor="let groupe of groupes">{{ groupe.name }}</li>
+    </ul>
   </div>
   <div
     class="tab-pane fade"
@@ -88,7 +77,9 @@
     aria-labelledby="profile-tab"
     tabindex="0"
   >
-    ...
+    <ul>
+      <li *ngFor="let formation of formations">{{ formation.name }}</li>
+    </ul>
   </div>
   <div
     class="tab-pane fade"
@@ -97,15 +88,8 @@
     aria-labelledby="contact-tab"
     tabindex="0"
   >
-    ...
-  </div>
-  <div
-    class="tab-pane fade"
-    id="disabled-tab-pane"
-    role="tabpanel"
-    aria-labelledby="disabled-tab"
-    tabindex="0"
-  >
-    ...
+    <ul>
+      <li *ngFor="let session of sessions">{{ session.name }}</li>
+    </ul>
   </div>
 </div>

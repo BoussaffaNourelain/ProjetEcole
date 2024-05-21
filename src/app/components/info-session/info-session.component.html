@@ -1,0 +1,22 @@
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>
+        Les informations de la session de la formation <br /><span></span><br />
+      </h2>
+    </div>
+  </div>
+</section>
+<div>
+  <h2>Informations de la session de formation</h2>
+  <p><strong>Nom de la session:</strong> {{ resultat.name }}</p>
+  <p><strong>Date de début :</strong> {{ resultat.datedebut }}</p>
+  <p><strong>Date de la fin :</strong> {{ resultat.datefin }}</p>
+  <p><strong>Nombre d' appreanant:</strong> {{ resultat.nbLearner }}</p>
+  <p><strong>Prix:</strong> {{ resultat.price }}</p>
+  <p><strong>Catégorie:</strong> {{ resultat.category }}</p>
+</div>

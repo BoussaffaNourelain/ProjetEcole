@@ -69,8 +69,20 @@
               <td>{{ user.role }}</td>
               <td>{{ user.status }}</td>
               <td>
-                <button type="button" class="btn btn-success">Activer</button>
-                <button type="button" class="btn btn-danger">Bloquer</button>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="Edit(user._id)"
+                >
+                  Valider
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="deleteUser(user._id)"
+                >
+                  Supprimer
+                </button>
               </td>
             </tr>
           </table>
@@ -111,10 +123,18 @@
                     Afficher
                   </button>
 
-                  <button type="button" class="btn btn-danger">
+                  <button
+                    type="button"
+                    class="btn btn-danger"
+                    (click)="deleteUser(user._id)"
+                  >
                     Supprimer
                   </button>
-                  <button type="button" class="btn btn-warning">
+                  <button
+                    type="button"
+                    class="btn btn-warning"
+                    (click)="EditUser(user._id)"
+                  >
                     Modifier
                   </button>
                 </td>

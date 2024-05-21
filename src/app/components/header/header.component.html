@@ -2,9 +2,9 @@
   <meta charset="utf-8" />
   <meta content="width=device-width, initial-scale=1.0" name="viewport" />
 
-  <title></title>
-  <meta content="" name="description" />
-  <meta content="" name="keywords" />
+  <title>Your Website Title</title>
+  <meta content="Your website description" name="description" />
+  <meta content="keyword1, keyword2, keyword3" name="keywords" />
 
   <!-- =======================================================
   * Template Name: NewBiz
@@ -18,116 +18,185 @@
 <header id="header" class="fixed-top d-flex align-items-center">
   <div class="container d-flex justify-content-between">
     <div class="logo">
-      <!-- Uncomment below if you prefer to use an text logo -->
+      <!-- Uncomment below if you prefer to use a text logo -->
       <!-- <h1><a href="index.html">NewBiz</a></h1> -->
       <a href="index.html"
-        ><img src="assets/img/logo.png" alt="" class="img-fluid"
+        ><img src="assets/img/logo.png" alt="Logo" class="img-fluid"
       /></a>
     </div>
 
     <nav id="navbar" class="navbar">
       <ul>
         <li>
-          <a class="nav-link scrollto active" routerLink="">Page d'acceuil</a>
+          <a class="nav-link scrollto active" routerLink="">Page d'accueil</a>
         </li>
         <li>
-          <a class="nav-link scrollto" routerLink="seConnecter"
-            >Se connecter
-          </a>
+          <a
+            class="nav-link scrollto"
+            routerLink="seConnecter"
+            *ngIf="!isLoggedIn()"
+            >Se connecter</a
+          >
         </li>
-        <li>
-          <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-              >S'inscrire</a
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            *ngIf="!isLoggedIn()"
+            >S'inscrire</a
+          >
+          <div class="dropdown-menu m-0">
+            <a routerLink="admin" class="dropdown-item">Administrateur</a>
+            <a routerLink="agentAdministratif" class="dropdown-item"
+              >Agent administratif</a
             >
-            <div class="dropdown-menu m-0">
-              <a routerLink="admin" class="dropdown-item">Administrateur</a>
-              <a routerLink="agentAdministratif" class="dropdown-item"
-                >Agent administratif</a
-              >
-              <a routerLink="financier" class="dropdown-item">Financier</a>
-              <a routerLink="apprenant" class="dropdown-item">Apprenant</a>
-              <a routerLink="formateur" class="dropdown-item">Formateur</a>
-            </div>
+            <a routerLink="financier" class="dropdown-item">Financier</a>
+            <a routerLink="apprenant" class="dropdown-item">Apprenant</a>
+            <a routerLink="formateur" class="dropdown-item">Formateur</a>
+          </div>
+        </li>
+        <!-- <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
+            >Tableau de bord</a
+          >
+          <div class="dropdown-menu m-0">
+            <a routerLink="dashboredAdministrateur" class="dropdown-item"
+              >Tableau de bord administrateur</a
+            >
+            <a routerLink="dashboredAgentAdministratif" class="dropdown-item"
+              >Tableau de bord administratif</a
+            >
+            <a routerLink="dashboredFinancier" class="dropdown-item"
+              >Tableau de bord financier</a
+            >
+            <a routerLink="dashboredApprenant" class="dropdown-item"
+              >Tableau de bord apprenant</a
+            >
+            <a routerLink="dashboredFormateur" class="dropdown-item"
+              >Tableau de bord formateur</a
+            >
+          </div>
+        </li> -->
+
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            data-bs-toggle="dropdown"
+            *ngIf="
+              isLoggedIn() &&
+              (decodedToken.role == 'admin' ||
+                decodedToken.role == 'agentAdministratif' ||
+                decodedToken.role == 'financier' ||
+                decodedToken.role == 'formateur')
+            "
+            >Gestion et controle des apprenants</a
+          >
+          <div class="dropdown-menu m-0">
+            <a
+              routerLink="ajouterAdmin"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'admin'"
+              >Ajouter un administrateur</a
+            >
+            <a
+              routerLink="ajouterAgentadministratif"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Ajouter un agent administratif</a
+            >
+            <a
+              routerLink="ajouterFinancier"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Ajouter un financier</a
+            >
+            <a
+              routerLink="affecterApprenantGroupe"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Affecter un apprenant à un ou plusieurs groupes</a
+            >
+            <a
+              routerLink="affecterFormateurFormation"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Affecter un formateur à une formation</a
+            >
+            <a
+              routerLink="affecterFormateurSession"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Affecter un formateur à une ou plusieurs sessions de formation</a
+            >
+            <a
+              routerLink="ajouterGroupe"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Ajouter un groupe</a
+            >
+            <a
+              routerLink="ajouterDevis"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'financier'"
+              >Ajouter un devis</a
+            >
+            <a
+              routerLink="ajouterFacture"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'financier'"
+              >Ajouter une facture</a
+            >
+            <a
+              routerLink="ajouterFormation"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Ajouter une formation</a
+            >
+            <a
+              routerLink="ajouterSession"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Ajouter une session de formation</a
+            >
+            <a
+              routerLink="ajouterDemande"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Ajouter une demande de formation</a
+            >
+            <a
+              routerLink="affecterFormationGroup"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Affecter une formation à un groupe</a
+            >
+            <a
+              routerLink="affecterSessionGroup"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Affecter une session de formation à un groupe</a
+            >
+            <a
+              routerLink="ajouterCours"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'formateur'"
+              >Ajouter un cours
+            </a>
           </div>
         </li>
         <li>
-          <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-              >Tableau de bord</a
-            >
-            <div class="dropdown-menu m-0">
-              <a routerLink="dashboredAdministrateur" class="dropdown-item"
-                >Tableau de bord administrateur
-              </a>
-              <a routerLink="dashboredAgentAdministratif" class="dropdown-item"
-                >Tableau de bord administratif</a
-              >
-              <a routerLink="dashboredFinancier" class="dropdown-item"
-                >Tableau de bord financier</a
-              >
-              <a routerLink="dashboredApprenant" class="dropdown-item"
-                >Tableau de bord apprenant</a
-              >
-              <a routerLink="dashboredFormateur" class="dropdown-item"
-                >Tableau de bord formateur</a
-              >
-            </div>
-          </div>
+          <a class="nav-link scrollto" routerLink="nos-Formations"
+            >Nos formations</a
+          >
         </li>
         <li>
-          <div class="nav-item dropdown">
-            <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown"
-              >Tableau de bord</a
-            >
-            <div class="dropdown-menu m-0">
-              <a routerLink="ajouterAdmin" class="dropdown-item"
-                >ajouter un administarteur
-              </a>
-              <a routerLink="ajouterAgentadministratif" class="dropdown-item"
-                >ajouter un agent administartif</a
-              >
-              <a routerLink="ajouterFinancier" class="dropdown-item"
-                >ajouter un financier
-              </a>
-              <a routerLink="affecterApprenantGroupe" class="dropdown-item"
-                >Affecter un apprenant à un ou plusieurs groupes
-              </a>
-              <a routerLink="affecterFormateurFormation" class="dropdown-item"
-                >Affecter un formateur à une formation
-              </a>
-              <a routerLink="affecterFormateurSession" class="dropdown-item"
-                >Affecter un formateur à une ou plusieurs session de formation
-              </a>
-              <a routerLink="ajouterGroupe" class="dropdown-item"
-                >ajouter un groupe</a
-              >
-              <a routerLink="ajouterDevis" class="dropdown-item"
-                >ajouter un devis</a
-              >
-              <a routerLink="ajouterFacture" class="dropdown-item"
-                >ajouter une facture</a
-              >
-              <a routerLink="ajouterFormation" class="dropdown-item"
-                >ajouter une formation
-              </a>
-              <a routerLink="ajouterSession" class="dropdown-item"
-                >ajouter une session de formation
-              </a>
-              <a routerLink="ajouterDemande" class="dropdown-item"
-                >ajouter une demande de formation
-              </a>
-            </div>
-          </div>
+          <a class="nav-link scrollto" routerLink="conatctez-Nous"
+            >Contactez nous</a
+          >
         </li>
-        <li>
-          <a class="nav-link scrollto" routerLink="nosFormations"
-            >Nos formations
-          </a>
-        </li>
-        <li>
-          <a class="nav-link scrollto" routerLink="contactezNous"
-            >Contactez nous
+        <li *ngIf="isLoggedIn()">
+          <a *ngIf="isLoggedIn()" (click)="logout()" style="color: bleu">
+            Se déconnecter
           </a>
         </li>
       </ul>

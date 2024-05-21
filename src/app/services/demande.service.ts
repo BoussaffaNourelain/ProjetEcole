@@ -1,30 +1,44 @@
 import { HttpClient } from '@angular/common/http';
+import { Observable } from 'rxjs';
 import { Injectable } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
 })
 export class DemandeService {
-  // destination adress
+  // destination address
   url: string = 'http://localhost:3000/demandes';
-  // le livreur
+
+  // the constructor
   constructor(private httpClient: HttpClient) {}
-  //array of objects
+
+  // get all demands
   getAllDemandes() {
-    // <{matches:any}=> réponse récupérée du serveur BE>
     return this.httpClient.get<{ demandes: any }>(this.url);
   }
-  //one number
+
+  // get demand by ID
   getDemandeById(id: any) {
     return this.httpClient.get(`${this.url}/${id}`);
   }
-  deleteDemande(id: number) {
-    return this.httpClient.delete(`${this.url}/${id}`);
+
+  // delete demand
+  deleteDemande(id: string) {
+    return this.httpClient.delete<{ msg: string }>(`${this.url}/${id}`);
   }
+
+  // add demand
   addDemande(t: any) {
     return this.httpClient.post<{ msg: string }>(this.url, t);
   }
+
+  // edit demand
   editDemande(t: any) {
     return this.httpClient.put(this.url, t);
+  }
+
+  // get chart data
+  getChartData(): Observable<any> {
+    return this.httpClient.get<any>(`${this.url}/chart-data`);
   }
 }

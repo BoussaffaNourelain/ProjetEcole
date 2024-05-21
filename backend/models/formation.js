@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 // user shema(models)
 const formationSchema = mongoose.Schema({
   name: String,
-  duration: String,
+  datedebut: String,
+  datefin: String,
   nbLearner: Number,
   price: String,
   category: String,
@@ -11,6 +12,12 @@ const formationSchema = mongoose.Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: "User",
   },
+  groupesID: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Groupe",
+    },
+  ],
 });
 //affect userShema to user model
 const formation = mongoose.model("Formation", formationSchema);

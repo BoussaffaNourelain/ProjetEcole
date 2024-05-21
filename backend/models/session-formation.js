@@ -3,7 +3,8 @@ const mongoose = require("mongoose");
 // user shema(models)
 const sessionFormationSchema = mongoose.Schema({
   name: String,
-  duration: String,
+  datedebut: String,
+  datefin: String,
   nbLearner: Number,
   price: String,
   category: String,
@@ -11,6 +12,12 @@ const sessionFormationSchema = mongoose.Schema({
     {
       type: mongoose.Schema.Types.ObjectId,
       ref: "User",
+    },
+  ],
+  groupesID: [
+    {
+      type: mongoose.Schema.Types.ObjectId,
+      ref: "Groupe",
     },
   ],
 });

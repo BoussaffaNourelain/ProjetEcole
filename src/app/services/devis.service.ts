@@ -16,13 +16,13 @@ export class DevisService {
   }
   //one number
   getDevisById(id: any) {
-    return this.httpClient.get(`${this.url}/${id}`);
+    return this.httpClient.get<{ devis: any }>(`${this.url}/${id}`);
   }
-  deleteDevis(id: number) {
-    return this.httpClient.delete(`${this.url}/${id}`);
+  deleteDevis(id: string) {
+    return this.httpClient.delete<{ msg: string }>(`${this.url}/${id}`);
   }
   addDevis(a: any) {
-    return this.httpClient.post(this.url, a);
+    return this.httpClient.post<{ msg: string }>(this.url, a);
   }
   editDevis(a: any) {
     return this.httpClient.put(this.url, a);

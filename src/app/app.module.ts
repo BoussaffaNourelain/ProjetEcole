@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -17,7 +18,6 @@ import { TestimonalComponent } from './components/testimonal/testimonal.componen
 import { TeamComponent } from './components/team/team.component';
 import { ClientComponent } from './components/client/client.component';
 import { ContactComponent } from './components/contact/contact.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { TrainersComponent } from './components/trainers/trainers.component';
 import { HttpClientModule } from '@angular/common/http';
 import { DashboredAdminComponent } from './components/dashbored-admin/dashbored-admin.component';
@@ -45,6 +45,20 @@ import { AddSessionFormationComponent } from './components/add-session-formation
 import { InfoPersonnelComponent } from './components/info-personnel/info-personnel.component';
 import { AjouterFormationComponent } from './components/ajouter-formation/ajouter-formation.component';
 import { AjouterSessionComponent } from './components/ajouter-session/ajouter-session.component';
+import { AddFormationGroupComponent } from './components/add-formation-group/add-formation-group.component';
+import { AddSessionGroupComponent } from './components/add-session-group/add-session-group.component';
+import { EditStatusComponent } from './components/edit-status/edit-status.component';
+import { EditFormationComponent } from './components/edit-formation/edit-formation.component';
+import { EditSessionComponent } from './components/edit-session/edit-session.component';
+import { EditGroupComponent } from './components/edit-group/edit-group.component';
+import { InfoDevisComponent } from './components/info-devis/info-devis.component';
+import { InfoFactureComponent } from './components/info-facture/info-facture.component';
+import { EditDevisComponent } from './components/edit-devis/edit-devis.component';
+import { EditFactureComponent } from './components/edit-facture/edit-facture.component';
+import { AddLessonComponent } from './components/add-lesson/add-lesson.component';
+import { ContactezNousComponent } from './components/contactez-nous/contactez-nous.component';
+import { NosFormationsComponent } from './components/nos-formations/nos-formations.component';
+import { StatistiqueComponent } from './components/statistique/statistique.component';
 
 @NgModule({
   declarations: [
@@ -88,6 +102,20 @@ import { AjouterSessionComponent } from './components/ajouter-session/ajouter-se
     InfoPersonnelComponent,
     AjouterFormationComponent,
     AjouterSessionComponent,
+    AddFormationGroupComponent,
+    AddSessionGroupComponent,
+    EditStatusComponent,
+    EditFormationComponent,
+    EditSessionComponent,
+    EditGroupComponent,
+    InfoDevisComponent,
+    InfoFactureComponent,
+    EditDevisComponent,
+    EditFactureComponent,
+    AddLessonComponent,
+    ContactezNousComponent,
+    NosFormationsComponent,
+    StatistiqueComponent,
   ],
   imports: [
     BrowserModule,

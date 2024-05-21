@@ -84,7 +84,13 @@
                 <td>{{ user.role }}</td>
                 <td>{{ user.payement }}</td>
                 <td>
-                  <button type="button" class="btn btn-success">Valider</button>
+                  <button
+                    type="button"
+                    class="btn btn-success"
+                    (click)="Valider(user._id)"
+                  >
+                    Valider
+                  </button>
                 </td>
               </ng-container>
             </tr>
@@ -103,7 +109,6 @@
       <div class="container">
         <div class="row">
           <table>
-            <th>id</th>
             <th>nom du client</th>
             <th>description du service</th>
             <th>prix</th>
@@ -112,16 +117,40 @@
             <th>actions</th>
 
             <tr *ngFor="let devis of devisTab">
-              <td>{{ devis._id }}</td>
               <td>{{ devis.clientName }}</td>
               <td>{{ devis.productDescription }}</td>
               <td>{{ devis.price }}</td>
               <td>{{ devis.quantity }}</td>
               <td>{{ devis.validityDate }}</td>
               <td>
-                <button type="button" class="btn btn-success">Display</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-warning">Edit</button>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="info(devis._id)"
+                >
+                  Affichier
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="deleteDevis(devis._id)"
+                >
+                  Supprimmer
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="editDevis(devis._id)"
+                >
+                  Modifier
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-dark"
+                  (click)="generateDevisPDF(devis)"
+                >
+                  Générer PDF
+                </button>
               </td>
             </tr>
           </table>
@@ -139,7 +168,6 @@
       <div class="container">
         <div class="row">
           <table>
-            <th>id</th>
             <th>nom du client</th>
             <th>date</th>
             <th>description du service</th>
@@ -147,16 +175,40 @@
             <th>methode de payment</th>
             <th>actions</th>
             <tr *ngFor="let facture of facturesTab">
-              <td>{{ facture._id }}</td>
               <td>{{ facture.clientName }}</td>
+              <td>{{ facture.date }}</td>
               <td>{{ facture.serviceDescription }}</td>
-              <td>{{ facture.nbLearner }}</td>
               <td>{{ facture.totalPrice }}</td>
               <td>{{ facture.methodOfPayment }}</td>
               <td>
-                <button type="button" class="btn btn-success">Display</button>
-                <button type="button" class="btn btn-danger">Delete</button>
-                <button type="button" class="btn btn-warning">Edit</button>
+                <button
+                  type="button"
+                  class="btn btn-success"
+                  (click)="infoo(facture._id)"
+                >
+                  Afficher
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-danger"
+                  (click)="deleteFacture(facture._id)"
+                >
+                  Supprimer
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-warning"
+                  (click)="editFacture(facture._id)"
+                >
+                  Modifier
+                </button>
+                <button
+                  type="button"
+                  class="btn btn-dark"
+                  (click)="generateFacturePDF(facture)"
+                >
+                  Générer PDF
+                </button>
               </td>
             </tr>
           </table>

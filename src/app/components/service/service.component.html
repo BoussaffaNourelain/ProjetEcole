@@ -5,89 +5,99 @@
       <p>
         Découvrez nos formations spécialisées conçues pour vous offrir une
         expertise pointue dans les domaines de l'informatique les plus
-        recherchés par les entreprises d'aujourd'hui
+        recherchés par les entreprises d'aujourd'hui.
       </p>
     </header>
 
     <div class="row justify-content-center">
-      <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
-        <div class="box">
-          <div class="icon">
-            <i class="bi bi-card-checklist" style="color: #007bff"></i>
-          </div>
-          <h4 class="title">
-            <a href=""
-              >Formation Avancée en Développement Web Full Stack avec React.js
-              et Node.js
-            </a>
-          </h4>
-          <p class="description">
-            Cette formation avancée couvre tous les aspects du développement
-            web, du front-end au back-end, en utilisant les technologies
-            modernes React.js et Node.js. Les apprenantss apprendront à
-            concevoir et à développer des applications web interactives et
-            performantes, en utilisant les dernières pratiques et outils de
-            développement.
-          </p>
-          <h3 style="color: black; margin-left: 50px">Prix : 1000 dt</h3>
-          <button type="submit" class="btn btn-lg mb-3 btn-primary">
-            Participer
-          </button>
-        </div>
-      </div>
-
-      <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="100">
-        <div class="box">
-          <div class="icon">
-            <i class="bi bi-brightness-high" style="color: #007bff"></i>
-          </div>
-          <h4 class="title">
-            <a href=""
-              >Formation en Sécurité Informatique et Ethical Hacking avec
-              Analyse de Malware
-            </a>
-          </h4>
-          <p class="description">
-            Cette formation spécialisée se concentre sur la protection des
-            systèmes informatiques contre les cybermenaces, en mettant l'accent
-            sur l'analyse des malwares et les techniques de piratage éthique.
-            Les étudiants apprendront à évaluer la sécurité des systèmes, à
-            identifier les vulnérabilités et à proposer des solutions de
-            sécurité efficaces, en utilisant des outils avancés d'analyse de
-            malwares.
-          </p>
-          <h3 style="color: black; margin-left: 50px">Prix : 1200 dt</h3>
-          <button type="submit" class="btn btn-lg mb-3 btn-primary">
-            Participer
-          </button>
-        </div>
-      </div>
-      <div class="col-md-6 col-lg-5" data-aos="zoom-in" data-aos-delay="200">
-        <div class="box">
-          <div class="icon">
-            <i class="bi bi-calendar4-week" style="color: #007bff"></i>
-          </div>
-          <h4 class="title">
-            <a href=""
-              >Formation en Data Science et Analyse de Données avec Python et
-              TensorFlow</a
+      <ng-container *ngFor="let formation of formationsTab">
+        <div
+          class="col-md-3 col-lg-3 mb-4"
+          style="margin-right: 1rem"
+          data-aos="zoom-in"
+          data-aos-delay="200"
+        >
+          <div class="box">
+            <div class="icon">
+              <i
+                class="bi bi-card-checklist"
+                style="color: #007bff; margin-left: 20px"
+              ></i>
+            </div>
+            <h4 class="title">
+              <a href="">{{ formation.name }}</a>
+            </h4>
+            <p class="description">
+              Notre formation débute le {{ formation.datedebut }} et se termine
+              le {{ formation.datefin }}. Elle est conçue pour offrir une
+              expérience d'apprentissage complète et immersive en
+              {{ formation.category }}.
+            </p>
+            <h3 style="color: black; margin-left: 50px">
+              Prix: {{ formation.price }}
+            </h3>
+            <button
+              type="submit"
+              class="btn btn-lg mb-3 btn-primary"
+              style="margin-left: 50px"
+              (click)="onParticiperClick()"
             >
-          </h4>
-          <p class="description">
-            Cette formation avancée prépare les étudiants à exploiter le
-            potentiel des données en utilisant les technologies populaires
-            Python et TensorFlow. Les étudiants apprendront les techniques
-            d'analyse de données, d'apprentissage automatique et de
-            visualisation de données, en utilisant des outils et des
-            bibliothèques puissants pour extraire des informations précieuses à
-            partir des données.
-          </p>
-          <h3 style="color: black; margin-left: 50px">Prix : 1500 dt</h3>
-          <button type="submit" class="btn btn-lg mb-3 btn-primary">
-            Participer
-          </button>
+              Participer
+            </button>
+          </div>
         </div>
-      </div>
+      </ng-container>
+    </div>
+  </div>
+  <div class="container" data-aos="fade-up">
+    <header class="section-header">
+      <h3>Nos sessions de formation</h3>
+      <p>
+        Découvrez nos sessions de formation spécialisées qui visent à vous
+        offrir une expertise approfondie dans les domaines informatiques les
+        plus recherchés par les entreprises actuelles.
+      </p>
+    </header>
+
+    <div class="row justify-content-center">
+      <ng-container *ngFor="let sessionformation of sessionsformationTab">
+        <div
+          class="col-md-3 col-lg-3 mb-4"
+          style="margin-right: 1rem"
+          data-aos="zoom-in"
+          data-aos-delay="200"
+        >
+          <div class="box">
+            <div class="icon">
+              <i
+                class="bi bi-brightness-high"
+                style="color: #007bff; margin-left: 20px"
+              ></i>
+            </div>
+            <h4 class="title">
+              <a href="">{{ sessionformation.name }}</a>
+            </h4>
+            <p class="description">
+              La session de formation démarre le
+              {{ sessionformation.datedebut }} et se termine le
+              {{ sessionformation.datefin }}. Cette session est conçue pour
+              fournir une expérience d'apprentissage complète et immersive dans
+              le domaine de {{ sessionformation.category }}.
+            </p>
+            <h3 style="color: black; margin-left: 50px">
+              Coût: {{ sessionformation.price }}
+            </h3>
+            <button
+              type="submit"
+              class="btn btn-lg mb-3 btn-primary"
+              style="margin-left: 50px"
+              (click)="onParticiperClick()"
+            >
+              Participer
+            </button>
+          </div>
+        </div>
+      </ng-container>
     </div>
   </div>
 </section>

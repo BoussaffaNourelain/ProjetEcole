@@ -16,15 +16,18 @@ export class FormationService {
   }
   //one number
   getFormationsById(id: any) {
-    return this.httpClient.get(`${this.url}/${id}`);
+    return this.httpClient.get<{ formation: any }>(`${this.url}/${id}`);
   }
-  deleteFormation(id: number) {
-    return this.httpClient.delete(`${this.url}/${id}`);
+  deleteFormation(id: string) {
+    return this.httpClient.delete<{ msg: string }>(`${this.url}/${id}`);
   }
   addFormation(a: any) {
     return this.httpClient.post<{ msg: string }>(this.url, a);
   }
   editFormation(a: any) {
     return this.httpClient.put(this.url, a);
+  }
+  getFormationsByUserId(userId: string) {
+    return this.httpClient.get<any>(`${this.url}?userId=${userId}`);
   }
 }

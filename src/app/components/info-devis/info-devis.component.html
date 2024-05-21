@@ -1,0 +1,26 @@
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>
+        Les informations du devis
+        <br /><span></span><br />
+      </h2>
+    </div>
+  </div>
+</section>
+<div>
+  <h2>Informations du devis</h2>
+  <p><strong>Nom du client :</strong> {{ result.clientName }}</p>
+  <p>
+    <strong>Description du service :</strong> {{ result.productDescription }}
+  </p>
+  <p><strong>Prix:</strong> {{ result.price }}</p>
+  <p><strong>Quantité:</strong> {{ result.quantity }}</p>
+  <p><strong>Date de validité:</strong> {{ result.validityDate }}</p>
+
+  <!-- Ajoutez d'autres champs d'information de l'utilisateur selon vos besoins -->
+</div>

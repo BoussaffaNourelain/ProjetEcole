@@ -16,15 +16,18 @@ export class SessionFormationService {
   }
   //one number
   getSessionsFormationsById(id: any) {
-    return this.httpClient.get(`${this.url}/${id}`);
+    return this.httpClient.get<{ session: any }>(`${this.url}/${id}`);
   }
-  deleteSessionsFormations(id: number) {
-    return this.httpClient.delete(`${this.url}/${id}`);
+  deleteSessionsFormations(id: string) {
+    return this.httpClient.delete<{ msg: string }>(`${this.url}/${id}`);
   }
   addSessionsFormations(a: any) {
     return this.httpClient.post<{ msg: string }>(this.url, a);
   }
   editSessionsFormations(a: any) {
     return this.httpClient.put(this.url, a);
+  }
+  getSessionsByUserId(userId: string) {
+    return this.httpClient.get<any>(`${this.url}?userId=${userId}`);
   }
 }

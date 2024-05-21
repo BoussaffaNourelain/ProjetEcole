@@ -4,8 +4,8 @@ const mongoose = require("mongoose");
 const devisSchema = mongoose.Schema({
   clientName: String,
   productDescription: String,
-  price: Number,
-  quantity: String,
+  price: String,
+  quantity: Number,
   validityDate: String,
 });
 //affect userShema to user model

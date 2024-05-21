@@ -1,1 +1,82 @@
-<p>add-devis works!</p>
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>
+        Ajouter un devis
+        <br /><span></span><br />
+      </h2>
+    </div>
+  </div>
+</section>
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7">
+        <form #devisForm="ngForm" (ngSubmit)="addDevis()">
+          <div class="form-group mb-3">
+            <label class="form-label">Description du service </label>
+
+            <input
+              type="text"
+              [(ngModel)]="devis.productDescription"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <label class="form-label">Prix du service</label>
+
+          <div class="form-group mb-3">
+            <input
+              type="text"
+              [(ngModel)]="devis.price"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Nombre de formations </label>
+
+            <input
+              type="number"
+              [(ngModel)]="devis.quantity"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Date de validité </label>
+
+            <input
+              type="date"
+              [(ngModel)]="devis.validityDate"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+          <div class="form-group mb-3">
+            <label class="form-label">Nom du client </label>
+
+            <input
+              type="text"
+              [(ngModel)]="devis.clientName"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+            />
+          </div>
+
+          <div class="form-group">
+            <input
+              type="submit"
+              class="btn btn-primary py-3 px-5"
+              value="Ajouter"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

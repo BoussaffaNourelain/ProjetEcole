@@ -1,11 +1,12 @@
+//configuration - import
+const cors = require("cors");
 //import BE express module
 const express = require("express");
 const app = express();
+// REQ CORS autorisation
+app.use(cors());
 // create app
 module.exports = app;
-//
-const session = require("express-session");
-
 //import body parser
 const bodyParser = require("body-parser");
 app.use(bodyParser.json());
@@ -17,6 +18,13 @@ mongoose.connect("mongodb://127.0.0.1:27017/ecoleDB");
 const user = require("./models/user");
 // import json web token module
 const jwt = require("jsonwebtoken");
+
+// Importez le module jwt-decode
+const jwt_decode = require("jwt-decode");
+
+// Assurez-vous que votre fichier est un module CommonJS
+module.exports = app;
+
 // import express session module
 const session = require("express-session");
 // import axios module
@@ -26,10 +34,7 @@ const bcrypt = require("bcrypt");
 // import multer module
 const multer = require("multer");
 //import express session
-const session = require("express-session");
-
 const path = require("path");
-const { Console } = require("console");
 // Security configuration
 app.use((req, res, next) => {
   res.setHeader("Access-Control-Allow-Origin", "*");
@@ -56,9 +61,41 @@ const Devis = require("./models/devis");
 const Facture = require("./models/facture");
 const SessionFormation = require("./models/session-formation");
 const Demande = require("./models/demande");
+const cours = require("./models/cours");
+//
+// Importer les routes
+const demandeRoutes = require("./routes/demandeRoutes"); // Importer la route des demandes
+
+// Utilisation des routes
+app.use("/api/demandes", demandeRoutes); // Utiliser la route des demandes
+
+// Route pour obtenir les statistiques des demandes
+app.get("/api/statistics", async (req, res) => {
+  try {
+    const totalDemandes = await Demande.countDocuments();
+    const demandesBySexe = await Demande.aggregate([
+      { $group: { _id: "$sexe", count: { $sum: 1 } } },
+    ]);
+    const demandesByTitleFormation = await Demande.aggregate([
+      { $group: { _id: "$titleFormation", count: { $sum: 1 } } },
+    ]);
+
+    res.json({
+      totalDemandes,
+      demandesBySexe,
+      demandesByTitleFormation,
+    });
+  } catch (error) {
+    res.status(500).json({
+      message: "Erreur lors de la récupération des statistiques des demandes",
+      error,
+    });
+  }
+});
+module.exports = app;
 
 // configuration
-const secretKey = "croco2024-venus";
+const secretKey = "projetEcole2024";
 app.use(
   session({
     secret: secretKey,
@@ -106,6 +143,7 @@ const storageConfig = multer.diskStorage({
     cb(null, imgName);
   },
 });
+//
 
 ////////////////////////////////////////
 // BL Get all  formations
@@ -147,6 +185,7 @@ app.post("/formations", (req, res) => {
   formationObj.save();
   res.json({ msg: "formation ajoutée " });
 });
+
 // BL Edit formations
 app.put("/formations", (req, res) => {
   //traitement logique
@@ -216,6 +255,60 @@ app.put("/sessionsFormations", (req, res) => {
       }
     }
   );
+});
+///////////////////////////////////////////
+// BL Get all  cours
+app.get("/cours", (req, res) => {
+  //traitement logique
+  console.log("here into BL : get all cours ");
+  cours.find().then((docs) => {
+    res.json({ cours: docs });
+  });
+});
+// BL Get cours by ID
+app.get("/cours/:id", (req, res) => {
+  //traitement logique
+  console.log("here into BL : get cours by ID ", req.params.id);
+  let coursId = req.params.id;
+  cours.findById(coursId).then((doc) => {
+    res.json({ cours: doc });
+  });
+});
+// BL Delete cours by ID
+app.delete("/cours/:id", (req, res) => {
+  //traitement logique
+  console.log("here into BL : delete cours  ", req.params.id);
+  let coursId = req.params.id;
+  cours.deleteOne({ _id: coursId }).then((response) => {
+    console.log("here response after delete one ", response);
+    if (response.deletedCount == 1) {
+      res.json({ msg: "done" });
+    } else {
+      res.json({ msg: "error" });
+    }
+  });
+});
+// BL Add cours
+app.post("/cours", (req, res) => {
+  //traitement logique
+  console.log("here into BL : add cours  ");
+  let coursObj = new cours(req.body);
+  coursObj.save();
+  res.json({ msg: " cours ajouté " });
+});
+// BL Edit cours
+app.put("/cours", (req, res) => {
+  //traitement logique
+  console.log("here into BL : edit cours", req.body);
+  let coursId = req.body._id;
+  cours.updateOne({ _id: coursId }, req.body).then((result) => {
+    console.log("here result", result);
+    if (result.modifiedCount == 1) {
+      res.json({ msg: "edited with success" });
+    } else {
+      res.json({ msg: "error" });
+    }
+  });
 });
 ///////////////////////////////////////////
 // BL Get all  groups
@@ -388,7 +481,7 @@ app.get("/demandes", (req, res) => {
   console.log("here into BL : get all demandes");
   //traitement logique
   Demande.find().then((docs) => {
-    res.json({ demande: docs });
+    res.json({ demandes: docs });
   });
 });
 // BL Get demande by ID
@@ -485,12 +578,14 @@ app.post("/users/seConnecter", (req, res) => {
           let obj = {
             firstName: user.firstName,
             lastName: user.lastName,
+            password: user.password,
             role: user.role,
             email: user.email,
             id: user._id,
           };
+          const token = jwt.sign(obj, secretKey, { expiresIn: "1h" });
           res.json({
-            user: obj,
+            token: token,
             msg: "Welcome",
           });
         } else {
@@ -512,6 +607,22 @@ app.get("/users/:id", (req, res) => {
   });
 });
 
+// BL Delete user by ID
+app.delete("/users/:id", (req, res) => {
+  //traitement logique
+  console.log("here into BL : delete user by id  ", req.params.id);
+  let userId = req.params.id;
+  User.deleteOne({ _id: userId }).then((response) => {
+    console.log("here response after delete one ", response);
+    if (response.deletedCount == 1) {
+      res.json({ msg: "done" });
+    } else {
+      res.json({ msg: "error" });
+    }
+  });
+});
+
+//LES AFFECTATIONS DES UTILISATEURS
 app.post("/users", async (req, res) => {
   console.log("here into bl: add user ", req.body);
 
@@ -571,4 +682,35 @@ app.post("/users", async (req, res) => {
     console.error("Error assigning user:", error);
     return res.status(500).json({ msg: "Internal Server Error" });
   }
+});
+// BL Edit user
+app.put("/users", (req, res) => {
+  //traitement logique
+  console.log("here into BL : edit user ", req.body);
+  let userId = req.body._id;
+  User.updateOne({ _id: userId }, req.body).then((result) => {
+    console.log("here result", result);
+    if (result.modifiedCount == 1) {
+      res.json({ msg: "edited with success" });
+    } else {
+      res.json({ msg: "error" });
+    }
+  });
+});
+// / Définir la route pour /api/demandes/chart-data
+app.get("/api/demandes/chart-data", (req, res) => {
+  // Ici, vous pouvez placer la logique pour récupérer les données de graphique depuis votre base de données ou un autre endroit
+  // Exemple de données de graphique fictives
+  const chart1Data = [
+    { label: "Label 1", value: 10 },
+    { label: "Label 2", value: 20 },
+    { label: "Label 3", value: 30 },
+  ];
+
+  const chart2Data = [
+    // Ajoutez les données pour le deuxième graphique ici si nécessaire
+  ];
+
+  // Renvoyer les données de graphique au format JSON
+  res.json({ chart1Data, chart2Data });
 });
