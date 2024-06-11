@@ -8,14 +8,15 @@ export class AuthentificationService {
   constructor() {}
 
   getToken(): string | null {
-    return sessionStorage.getItem('token'); // Utilisez sessionStorage au lieu de localStorage
+    return sessionStorage.getItem('token');
   }
 
   getUserIdFromToken(): string | null {
     const token = this.getToken();
     if (token) {
       const decoded: any = jwtDecode(token);
-      return decoded.userId; // Assurez-vous que le token contient l'ID de l'utilisateur sous la clé 'userId'
+      console.log('Decoded Token:', decoded);
+      return decoded.id; // Changez 'userId' en 'id' pour correspondre à votre token
     }
     return null;
   }

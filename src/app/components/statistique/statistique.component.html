@@ -1,9 +1,41 @@
-<!-- <div style="display: flex; justify-content: space-around">
-  <div style="width: 45%">
-    <canvas id="chart1"></canvas>
-  </div>
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-in" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
 
-  <div style="width: 45%">
-    <canvas id="chart2"></canvas>
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>Nos prospects<br /><span></span><br /></h2>
+    </div>
   </div>
-</div> -->
+</section>
+
+<div class="chart-controls text-center" style="margin-top: 40px">
+  <h3>Découvrez nos données démographiques et statistiques.</h3>
+
+  <div class="chart-controls text-center" style="margin-top: 40px">
+    <button
+      class="chart-button btn btn-dark mr-3"
+      (click)="generateSexeBarChart()"
+      style="margin-right: 40px"
+    >
+      <span style="font-size: 18px">Afficher par Sexe</span>
+    </button>
+    <button
+      class="chart-button btn btn-dark"
+      (click)="generateFormationPieChart()"
+    >
+      <span style="font-size: 18px">Afficher par Formation</span>
+    </button>
+  </div>
+</div>
+
+<div class="container mt-4" style="max-width: 900px">
+  <canvas
+    id="myChart"
+    width="800"
+    height="400"
+    style="margin: 0 auto; max-width: 100%"
+  ></canvas>
+</div>
+<br /><br /><br />

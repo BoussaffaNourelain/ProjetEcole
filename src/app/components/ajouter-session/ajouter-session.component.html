@@ -10,70 +10,109 @@
   </div>
 </section>
 
-<div class="site-section">
+<div class="site-section" style="padding: 50px 0">
   <div class="container">
-    <div class="row">
+    <div class="row justify-content-center">
       <div class="col-lg-7">
-        <form #sessionForm="ngForm" (ngSubmit)="addSession()">
+        <form
+          #sessionForm="ngForm"
+          (ngSubmit)="addSession()"
+          style="
+            background-color: #f8f9fa;
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0px 5px 15px 0px rgba(0, 0, 0, 0.1);
+          "
+        >
           <div class="form-group mb-3">
-            <label class="form-label">Nom de la session de formation</label>
-
+            <label class="form-label" style="font-weight: bold"
+              >Nom de la session de formation</label
+            >
             <input
               type="text"
               [(ngModel)]="SessionFormation.name"
               [ngModelOptions]="{ standalone: true }"
               class="form-control"
+              style="border-radius: 0; box-shadow: none; border-color: #ced4da"
+              required
             />
           </div>
           <div class="form-group mb-3">
-            <label class="form-label">Date du début </label>
-
+            <label class="form-label" style="font-weight: bold"
+              >Date du début</label
+            >
             <input
               type="date"
               [(ngModel)]="SessionFormation.datedebut"
               [ngModelOptions]="{ standalone: true }"
               class="form-control"
+              style="border-radius: 0; box-shadow: none; border-color: #ced4da"
+              required
             />
           </div>
           <div class="form-group mb-3">
-            <label class="form-label">Date de la fin </label>
-
+            <label class="form-label" style="font-weight: bold"
+              >Date de la fin</label
+            >
             <input
               type="date"
               [(ngModel)]="SessionFormation.datefin"
               [ngModelOptions]="{ standalone: true }"
               class="form-control"
+              style="border-radius: 0; box-shadow: none; border-color: #ced4da"
+              required
             />
           </div>
           <div class="form-group mb-3">
-            <label class="form-label">Nombre d'apprenant </label>
-
+            <label class="form-label" style="font-weight: bold"
+              >Nombre d'apprenant</label
+            >
             <input
               type="number"
               [(ngModel)]="SessionFormation.nbLearner"
               [ngModelOptions]="{ standalone: true }"
               class="form-control"
+              style="border-radius: 0; box-shadow: none; border-color: #ced4da"
+              required
             />
           </div>
           <div class="form-group mb-3">
-            <label class="form-label">Prix</label>
-
+            <label class="form-label" style="font-weight: bold">Prix</label>
             <input
               type="text"
               [(ngModel)]="SessionFormation.price"
               [ngModelOptions]="{ standalone: true }"
               class="form-control"
+              style="border-radius: 0; box-shadow: none; border-color: #ced4da"
+              required
             />
           </div>
           <div class="form-group mb-3">
-            <label class="form-label">Catégorie</label>
-
-            <input
-              type="tel"
+            <label class="form-label" style="font-weight: bold"
+              >Catégorie</label
+            >
+            <select
               [(ngModel)]="SessionFormation.category"
-              [ngModelOptions]="{ standalone: true }"
+              name="category"
               class="form-control"
-            />
+              style="border-radius: 0; box-shadow: none; border-color: #ced4da"
+              required
+            >
+              <option value="" disabled selected>
+                Sélectionnez une catégorie
+              </option>
+              <option value="Développement Web">Développement Web</option>
+              <option value="Développement Mobile">Développement Mobile</option>
+              <option value="Sécurité Informatique">
+                Sécurité Informatique
+              </option>
+              <option value="Intelligence Artificielle">
+                Intelligence Artificielle
+              </option>
+              <option value="Big Data et Analytics">
+                Big Data et Analytics
+              </option>
+            </select>
           </div>
 
           <div class="form-group">
@@ -81,6 +120,11 @@
               type="submit"
               class="btn btn-primary py-3 px-5"
               value="Ajouter"
+              style="
+                background-color: #007bff;
+                border-color: #007bff;
+                border-radius: 50px;
+              "
             />
           </div>
         </form>

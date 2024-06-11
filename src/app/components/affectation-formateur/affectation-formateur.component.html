@@ -1,0 +1,93 @@
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>Affectation des groupes <br /><span></span><br /></h2>
+    </div>
+  </div>
+</section>
+<br /><br /><br />
+<div class="site-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-7 mx-auto">
+        <form
+          #userForm="ngForm"
+          (ngSubmit)="affectation()"
+          class="contact-form"
+        >
+          <div class="row">
+            <div class="col-md-6 form-group mb-3">
+              <input
+                type="text"
+                [(ngModel)]="user.firstName"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control"
+                placeholder="Nom"
+                required
+              />
+            </div>
+            <div class="col-md-6 form-group mb-3">
+              <input
+                type="text"
+                [(ngModel)]="user.lastName"
+                [ngModelOptions]="{ standalone: true }"
+                class="form-control"
+                placeholder="Prénom"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="form-group mb-3">
+            <input
+              type="email"
+              [(ngModel)]="user.email"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              placeholder="Email"
+              required
+            />
+          </div>
+          <div class="form-group mb-3">
+            <input
+              type="tel"
+              [(ngModel)]="user.tel"
+              [ngModelOptions]="{ standalone: true }"
+              class="form-control"
+              placeholder="Téléphone"
+              required
+            />
+          </div>
+
+          <div class="form-group mb-3">
+            <select
+              name=""
+              id=""
+              class="form-control"
+              (change)="selectGroupe($event)"
+              required
+            >
+              <option value="">Veuillez sélectionner le groupe</option>
+              <option
+                [value]="g._id"
+                style="color: black"
+                *ngFor="let g of groupesTab"
+              >
+                {{ g.name }}
+              </option>
+            </select>
+          </div>
+
+          <div class="text-center">
+            <input
+              type="submit"
+              class="btn btn-primary py-3 px-5"
+              value="Affecter"
+            />
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+<br /><br /><br />

@@ -15,6 +15,9 @@ import { AddGroupeComponent } from './components/add-groupe/add-groupe.component
 import { AddLessonComponent } from './components/add-lesson/add-lesson.component';
 import { AddSessionFormationComponent } from './components/add-session-formation/add-session-formation.component';
 import { AddSessionGroupComponent } from './components/add-session-group/add-session-group.component';
+import { AffectationFormateurComponent } from './components/affectation-formateur/affectation-formateur.component';
+import { AffectationFormationGroupComponent } from './components/affectation-formation-group/affectation-formation-group.component';
+import { AffectionGroupComponent } from './components/affection-group/affection-group.component';
 import { AjouterFormationComponent } from './components/ajouter-formation/ajouter-formation.component';
 import { AjouterSessionComponent } from './components/ajouter-session/ajouter-session.component';
 import { ContactComponent } from './components/contact/contact.component';
@@ -30,6 +33,7 @@ import { EditFormationComponent } from './components/edit-formation/edit-formati
 import { EditGroupComponent } from './components/edit-group/edit-group.component';
 import { EditSessionComponent } from './components/edit-session/edit-session.component';
 import { EditStatusComponent } from './components/edit-status/edit-status.component';
+import { FormationDetailsComponent } from './components/formation-details/formation-details.component';
 import { HomeComponent } from './components/home/home.component';
 import { InfoDevisComponent } from './components/info-devis/info-devis.component';
 import { InfoFactureComponent } from './components/info-facture/info-facture.component';
@@ -41,6 +45,7 @@ import { LoginComponent } from './components/login/login.component';
 import { NosFormationsComponent } from './components/nos-formations/nos-formations.component';
 import { ServiceComponent } from './components/service/service.component';
 import { SignupComponent } from './components/signup/signup.component';
+import { StatistiqueComponent } from './components/statistique/statistique.component';
 import { TeamComponent } from './components/team/team.component';
 import { TrainersComponent } from './components/trainers/trainers.component';
 
@@ -96,6 +101,17 @@ const routes: Routes = [
   { path: 'ajouterCours', component: AddLessonComponent },
   { path: 'conatctez-Nous', component: ContactezNousComponent },
   { path: 'nos-Formations', component: NosFormationsComponent },
+  { path: 'nosStatistique', component: StatistiqueComponent },
+  { path: 'affectationApprenantGroup/:id', component: AffectionGroupComponent },
+  { path: 'detailsFormationGroup/:id', component: FormationDetailsComponent },
+  {
+    path: 'affectationFormateurGroup/:id',
+    component: AffectationFormateurComponent,
+  },
+  {
+    path: 'affectationFormationGroup/:id',
+    component: AffectationFormationGroupComponent,
+  },
 ];
 
 @NgModule({

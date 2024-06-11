@@ -6,6 +6,7 @@ const groupeSchema = mongoose.Schema({
   trainerName: String,
   nbLearner: Number,
   apprenants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
+  formateurs: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
   formationID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Formation",

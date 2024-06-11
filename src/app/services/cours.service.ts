@@ -33,4 +33,11 @@ export class CoursService {
   editCours(t: any) {
     return this.httpClient.put(this.url, t);
   }
+  // get cours by groupe ID
+  // get cours by groupe ID
+  getCoursByGroupeId(groupeId: any) {
+    return this.httpClient.get<{ cours: any[] }>(
+      `${this.url}/groupe/${groupeId}`
+    );
+  }
 }

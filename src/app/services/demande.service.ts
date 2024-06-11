@@ -37,8 +37,8 @@ export class DemandeService {
     return this.httpClient.put(this.url, t);
   }
 
-  // get chart data
-  getChartData(): Observable<any> {
-    return this.httpClient.get<any>(`${this.url}/chart-data`);
-  }
+  // // get chart data
+  // getChartData(): Observable<any> {
+  //   return this.httpClient.get<any>(`${this.url}/chart-data`);
+  // }
 }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormationService } from 'src/app/services/formation.service';
 import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-formateur',
@@ -15,7 +16,8 @@ export class AddFormateurComponent implements OnInit {
   idFormation: any;
   constructor(
     private fService: FormationService,
-    private uService: UserService
+    private uService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class AddFormateurComponent implements OnInit {
     this.uService.addUser(this.user).subscribe((response) => {
       console.log('here response ', response.msg);
     });
+    this.router.navigate([`dashboredAgentAdministratif`]);
   }
   selectGroupe(evt: any) {
     console.log('here event id', evt.target.value);

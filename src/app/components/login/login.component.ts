@@ -28,15 +28,52 @@ export class LoginComponent implements OnInit {
     });
   }
 
+  // login() {
+  //   this.userService.login(this.user).subscribe((response) => {
+  //     console.log('here response after login ', response);
+  //     if (response.token) {
+  //       let decodedToken: any = jwtDecode(response.token);
+  //       // Vérifier si l'utilisateur est activé
+  //       if (decodedToken.status === 'activé') {
+  //         sessionStorage.setItem('token', response.token);
+  //         console.log('decodedToken', decodedToken);
+  //         switch (decodedToken.role) {
+  //           case 'admin':
+  //             this.router.navigate(['dashboredAdministrateur']);
+  //             break;
+  //           case 'agentAdministratif':
+  //             this.router.navigate(['dashboredAgentAdministratif']);
+  //             break;
+  //           case 'financier':
+  //             this.router.navigate(['dashboredFinancier']);
+  //             break;
+  //           case 'apprenant':
+  //             this.router.navigate(['dashboredApprenant']);
+  //             break;
+  //           case 'formateur':
+  //             this.router.navigate(['dashboredFormateur']);
+  //             break;
+  //           default:
+  //             this.router.navigate(['']);
+  //             break;
+  //         }
+  //       } else {
+  //         // Afficher un message si l'utilisateur n'est pas activé
+  //         this.errorMsg =
+  //           "Votre compte n'est pas activé. Veuillez attendre que l'administrateur l'active.";
+  //       }
+  //     } else {
+  //       this.errorMsg = 'Veuillez vérifier votre email/mot de passe !';
+  //     }
+  //   });
+  // }
   login() {
     this.userService.login(this.user).subscribe((response) => {
       console.log('here response after login ', response);
       if (response.token) {
         let decodedToken: any = jwtDecode(response.token);
         sessionStorage.setItem('token', response.token);
-
         console.log('decodedToken', decodedToken);
-
         switch (decodedToken.role) {
           case 'admin':
             this.router.navigate(['dashboredAdministrateur']);

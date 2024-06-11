@@ -3,93 +3,113 @@
     <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
       <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
     </div>
-
     <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
       <h2>
-        Tableau de bord apprenant
+        Mon compte
         <br /><span></span><br />
       </h2>
     </div>
   </div>
 </section>
 
-<ul class="nav nav-tabs" id="myTab" role="tablist">
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link active"
-      id="home-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#home-tab-pane"
-      type="button"
-      role="tab"
-      aria-controls="home-tab-pane"
-      aria-selected="true"
-    >
-      Mes groupes
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="profile-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#profile-tab-pane"
-      type="button"
-      role="tab"
-      aria-controls="profile-tab-pane"
-      aria-selected="false"
-    >
-      Mes formations
-    </button>
-  </li>
-  <li class="nav-item" role="presentation">
-    <button
-      class="nav-link"
-      id="contact-tab"
-      data-bs-toggle="tab"
-      data-bs-target="#contact-tab-pane"
-      type="button"
-      role="tab"
-      aria-controls="contact-tab-pane"
-      aria-selected="false"
-    >
-      Mes sessions de formations
-    </button>
-  </li>
-</ul>
+<head>
+  <title>Mes groupes</title>
+  <link
+    href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    rel="stylesheet"
+  />
+  <style>
+    body {
+      background-color: #f8f9fa;
+      font-family: Arial, sans-serif;
+    }
 
-<div class="tab-content" id="myTabContent">
-  <div
-    class="tab-pane fade show active"
-    id="home-tab-pane"
-    role="tabpanel"
-    aria-labelledby="home-tab"
-    tabindex="0"
-  >
-    <ul>
-      <li *ngFor="let groupe of groupes">{{ groupe.name }}</li>
-    </ul>
-  </div>
-  <div
-    class="tab-pane fade"
-    id="profile-tab-pane"
-    role="tabpanel"
-    aria-labelledby="profile-tab"
-    tabindex="0"
-  >
-    <ul>
-      <li *ngFor="let formation of formations">{{ formation.name }}</li>
-    </ul>
-  </div>
-  <div
-    class="tab-pane fade"
-    id="contact-tab-pane"
-    role="tabpanel"
-    aria-labelledby="contact-tab"
-    tabindex="0"
-  >
-    <ul>
-      <li *ngFor="let session of sessions">{{ session.name }}</li>
-    </ul>
-  </div>
-</div>
+    .card {
+      transition: transform 0.3s, box-shadow 0.3s;
+      background-color: #e0e0e0;
+      border: none;
+      border-radius: 10px;
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+
+    .card img {
+      width: 50%;
+      height: auto;
+      object-fit: cover;
+      margin: 20px auto;
+      display: block;
+      border-radius: 50%;
+    }
+
+    .card-title {
+      font-size: 1.5rem;
+      color: #333;
+      margin-bottom: 15px;
+      text-align: center;
+    }
+
+    .card-text {
+      color: #555;
+      font-size: 1rem;
+      margin-bottom: 10px;
+      text-align: center;
+    }
+
+    .container {
+      margin-top: 40px;
+    }
+
+    .hero-section {
+      background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5)),
+        url("assets/img/hero-img.svg") no-repeat center center;
+      background-size: cover;
+      color: white;
+      padding: 100px 0;
+      text-align: center;
+    }
+
+    .hero-section h2 {
+      font-size: 2.5rem;
+      margin-bottom: 0;
+    }
+
+    .hero-section p {
+      font-size: 1.25rem;
+    }
+  </style>
+</head>
+
+<body>
+  <section id="groups" class="pt-5">
+    <div class="container">
+      <h3 class="text-center">Mes groupes</h3>
+
+      <div class="row">
+        <div class="col-md-4 mb-4" *ngFor="let groupe of groupesTab">
+          <div class="card" (click)="afficheFormation(groupe._id)">
+            <img
+              src="assets/img/avatar.webp"
+              class="card-img-top"
+              alt="Image du Groupe"
+            />
+            <div class="card-body">
+              <h5 class="card-title">Groupe:{{ groupe.name }}</h5>
+              <p class="card-text">Formateur : {{ groupe.trainerName }}</p>
+              <p class="card-text">
+                Nombre d'apprenants : {{ groupe.nbLearner }}
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>

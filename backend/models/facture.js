@@ -7,6 +7,10 @@ const factureSchema = mongoose.Schema({
   serviceDescription: String,
   totalPrice: String,
   methodOfPayment: String,
+  userID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "User",
+  },
 });
 //affect userShema to user model
 const facture = mongoose.model("Facture", factureSchema);

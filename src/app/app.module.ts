@@ -59,6 +59,10 @@ import { AddLessonComponent } from './components/add-lesson/add-lesson.component
 import { ContactezNousComponent } from './components/contactez-nous/contactez-nous.component';
 import { NosFormationsComponent } from './components/nos-formations/nos-formations.component';
 import { StatistiqueComponent } from './components/statistique/statistique.component';
+import { AffectionGroupComponent } from './components/affection-group/affection-group.component';
+import { FormationDetailsComponent } from './components/formation-details/formation-details.component';
+import { AffectationFormateurComponent } from './components/affectation-formateur/affectation-formateur.component';
+import { AffectationFormationGroupComponent } from './components/affectation-formation-group/affectation-formation-group.component';
 
 @NgModule({
   declarations: [
@@ -116,6 +120,10 @@ import { StatistiqueComponent } from './components/statistique/statistique.compo
     ContactezNousComponent,
     NosFormationsComponent,
     StatistiqueComponent,
+    AffectionGroupComponent,
+    FormationDetailsComponent,
+    AffectationFormateurComponent,
+    AffectationFormationGroupComponent,
   ],
   imports: [
     BrowserModule,
@@ -124,6 +132,10 @@ import { StatistiqueComponent } from './components/statistique/statistique.compo
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
+    BrowserModule,
+    FormsModule,
+    ReactiveFormsModule,
+    HttpClientModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

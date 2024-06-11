@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { SessionFormationService } from 'src/app/services/session-formation.service';
 import { UserService } from 'src/app/services/user.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-session-formation',
@@ -15,7 +16,8 @@ export class AddSessionFormationComponent implements OnInit {
   idSession: any;
   constructor(
     private sService: SessionFormationService,
-    private uService: UserService
+    private uService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -30,6 +32,7 @@ export class AddSessionFormationComponent implements OnInit {
     this.uService.addUser(this.user).subscribe((response) => {
       console.log('here response ', response.msg);
     });
+    this.router.navigate([`dashboredAgentAdministratif`]);
   }
   selectGroupe(evt: any) {
     console.log('here event id', evt.target.value);

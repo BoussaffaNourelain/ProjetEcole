@@ -18,6 +18,7 @@ const userSchema = mongoose.Schema({
       ref: "Groupe",
     },
   ],
+
   formationID: {
     type: mongoose.Schema.Types.ObjectId,
     ref: "Formation",
@@ -28,6 +29,10 @@ const userSchema = mongoose.Schema({
       ref: "SessionFormation",
     },
   ],
+  demandeID: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: "Demande",
+  },
 });
 //affect userShema to user model
 const user = mongoose.model("User", userSchema);

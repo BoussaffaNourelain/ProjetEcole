@@ -1,0 +1,35 @@
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>
+        Ma formation
+        <br /><span></span><br />
+      </h2>
+    </div>
+  </div>
+</section>
+<section id="groups" class="pt-5">
+  <div class="container">
+    <h3 class="text-center">...</h3>
+
+    <div class="row">
+      <div class="col-md-4 mb-4" *ngFor="let formation of formationsTab">
+        <div class="card">
+          <img
+            src="assets/img/avatar.webp"
+            class="card-img-top"
+            alt="Image du Groupe"
+          />
+          <div class="card-body">
+            <h5 class="card-title">Formation :{{ formation.name }}</h5>
+            <p class="card-text"></p>
+            <p class="card-text"></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

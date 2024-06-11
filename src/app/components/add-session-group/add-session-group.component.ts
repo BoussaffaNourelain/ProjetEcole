@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { GroupeService } from 'src/app/services/groupe.service';
 import { SessionFormationService } from 'src/app/services/session-formation.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-session-group',
@@ -16,7 +17,8 @@ export class AddSessionGroupComponent implements OnInit {
 
   constructor(
     private gService: GroupeService,
-    private sService: SessionFormationService
+    private sService: SessionFormationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -67,6 +69,7 @@ export class AddSessionGroupComponent implements OnInit {
         // ou effectuer d'autres actions en conséquence
       }
     });
+    this.router.navigate([`dashboredAgentAdministratif`]);
   }
 
   selectGroupe(evt: any) {

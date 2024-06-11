@@ -12,7 +12,7 @@
     </div>
   </div>
 </section>
-
+<br /><br /><br />
 <ul class="nav nav-tabs" id="myTab" role="tablist">
   <li class="nav-item" role="presentation">
     <button
@@ -81,7 +81,7 @@
       aria-controls="request-tab-pane"
       aria-selected="false"
     >
-      Traiter les demandes de formation
+      Demandes de formations
     </button>
   </li>
   <li class="nav-item" role="presentation">
@@ -116,8 +116,6 @@
             <th>Prénom</th>
             <th>Email</th>
             <th>Téléphone</th>
-            <th>Adresse</th>
-
             <th>Role</th>
             <th>Actions</th>
             <tr *ngFor="let user of usersTab">
@@ -127,8 +125,6 @@
                 <td>{{ user.lastName }}</td>
                 <td>{{ user.email }}</td>
                 <td>{{ user.tel }}</td>
-                <td>{{ user.adress }}</td>
-
                 <td>{{ user.role }}</td>
                 <td>
                   <button
@@ -423,3 +419,4 @@
     </div>
   </div>
 </div>
+<br /><br /><br />

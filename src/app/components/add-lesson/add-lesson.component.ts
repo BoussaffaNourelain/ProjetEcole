@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
+import { ActivatedRoute, Router } from '@angular/router';
 import { CoursService } from 'src/app/services/cours.service';
 import { GroupeService } from 'src/app/services/groupe.service';
 
@@ -17,7 +18,8 @@ export class AddLessonComponent {
 
   constructor(
     private grService: GroupeService,
-    private cService: CoursService
+    private cService: CoursService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     this.grService.getAllGroupes().subscribe((reponse) => {
@@ -35,5 +37,6 @@ export class AddLessonComponent {
     this.cService.addCours(this.cours).subscribe((response) => {
       console.log('here response ', response.msg);
     });
+    this.router.navigate([`dashboredFormateur`]);
   }
 }

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FormationService } from 'src/app/services/formation.service';
 
 @Component({
@@ -14,7 +14,8 @@ export class EditSessionComponent {
   formationId: any;
   constructor(
     private route: ActivatedRoute,
-    private fService: FormationService
+    private fService: FormationService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     // Récupérer l'ID de l'utilisateur depuis l'URL
@@ -32,5 +33,6 @@ export class EditSessionComponent {
       console.log('Modification réussie :', response);
       // Vous pouvez ajouter une redirection ou un message de succès ici
     });
+    this.router.navigate([`dashboredAgentAdministratif`]);
   }
 }

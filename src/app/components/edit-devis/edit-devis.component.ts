@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
 import { DevisService } from 'src/app/services/devis.service';
 
 @Component({
@@ -13,7 +14,11 @@ export class EditDevisComponent {
   devisForm!: FormGroup;
   devis: any;
   devisId: any;
-  constructor(private route: ActivatedRoute, private dService: DevisService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private dService: DevisService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     // Récupérer l'ID de l'utilisateur depuis l'URL
@@ -31,5 +36,6 @@ export class EditDevisComponent {
       console.log('Modification réussie :', response);
       // Vous pouvez ajouter une redirection ou un message de succès ici
     });
+    this.router.navigate([`dashboredFinancier`]);
   }
 }

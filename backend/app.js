@@ -3,6 +3,9 @@ const cors = require("cors");
 //import BE express module
 const express = require("express");
 const app = express();
+const router = express.Router();
+module.exports = router;
+
 // REQ CORS autorisation
 app.use(cors());
 // create app
@@ -61,7 +64,7 @@ const Devis = require("./models/devis");
 const Facture = require("./models/facture");
 const SessionFormation = require("./models/session-formation");
 const Demande = require("./models/demande");
-const cours = require("./models/cours");
+const Cours = require("./models/cours");
 //
 // Importer les routes
 const demandeRoutes = require("./routes/demandeRoutes"); // Importer la route des demandes
@@ -261,7 +264,7 @@ app.put("/sessionsFormations", (req, res) => {
 app.get("/cours", (req, res) => {
   //traitement logique
   console.log("here into BL : get all cours ");
-  cours.find().then((docs) => {
+  Cours.find().then((docs) => {
     res.json({ cours: docs });
   });
 });
@@ -270,7 +273,7 @@ app.get("/cours/:id", (req, res) => {
   //traitement logique
   console.log("here into BL : get cours by ID ", req.params.id);
   let coursId = req.params.id;
-  cours.findById(coursId).then((doc) => {
+  Cours.findById(coursId).then((doc) => {
     res.json({ cours: doc });
   });
 });
@@ -279,7 +282,7 @@ app.delete("/cours/:id", (req, res) => {
   //traitement logique
   console.log("here into BL : delete cours  ", req.params.id);
   let coursId = req.params.id;
-  cours.deleteOne({ _id: coursId }).then((response) => {
+  Cours.deleteOne({ _id: coursId }).then((response) => {
     console.log("here response after delete one ", response);
     if (response.deletedCount == 1) {
       res.json({ msg: "done" });
@@ -301,7 +304,7 @@ app.put("/cours", (req, res) => {
   //traitement logique
   console.log("here into BL : edit cours", req.body);
   let coursId = req.body._id;
-  cours.updateOne({ _id: coursId }, req.body).then((result) => {
+  Cours.updateOne({ _id: coursId }, req.body).then((result) => {
     console.log("here result", result);
     if (result.modifiedCount == 1) {
       res.json({ msg: "edited with success" });
@@ -623,66 +626,38 @@ app.delete("/users/:id", (req, res) => {
 });
 
 //LES AFFECTATIONS DES UTILISATEURS
-app.post("/users", async (req, res) => {
-  console.log("here into bl: add user ", req.body);
+app.put("/users/:userId/assign-group", async (req, res) => {
+  const userId = req.params.userId;
+  const groupId = req.body.groupId; // Assurez-vous que le groupeId est envoyé dans le corps de la requête
 
   try {
-    // Recherche si l'utilisateur existe déjà
-    const existingUser = await User.findOne({ email: req.body.email });
+    // Vérifiez si l'utilisateur existe
+    const existingUser = await User.findById(userId);
     if (!existingUser) {
-      return res.json({ msg: "User does not exist" });
+      return res.status(404).json({ msg: "Utilisateur introuvable" });
     }
 
-    // Vérifier le rôle de l'utilisateur
-    if (existingUser.role === "apprenant") {
-      // Logique pour les apprenants
-      // Vérifier si l'apprenant est déjà affecté à un groupe
-      if (existingUser.groupesID.includes(req.body.groupeID)) {
-        return res.json({ msg: "L'apprenant est déjà ajouté à ce groupe !" });
-      }
-
-      // Recherche du groupe avec l'ID fourni
-      const groupeObj = await Groupe.findById(req.body.groupeID);
-      if (!groupeObj) {
-        return res.json({ msg: "Groupe inexistant ! " });
-      }
-
-      // Affectez l'utilisateur au groupe et sauvegardez
-      groupeObj.apprenants.push(existingUser._id);
-      existingUser.groupesID.push(req.body.groupeID);
-      await Promise.all([groupeObj.save(), existingUser.save()]);
-      return res.json({ msg: "Apprenant affecté au groupe" });
-    } else if (existingUser.role === "formateur") {
-      // Logique pour les formateurs
-      // Recherche de la session de formation avec l'ID fourni
-      const sessionObj = await SessionFormation.findById(req.body.sessionID);
-      if (!sessionObj) {
-        return res.json({ msg: "SessionFormation not found" });
-      }
-
-      // Vérifier si le formateur est déjà associé à cette session de formation
-      if (sessionObj.formateurs.includes(existingUser._id)) {
-        return res.json({
-          msg: "Formateur already assigned to this SessionFormation",
-        });
-      }
-
-      // Associer la session de formation au formateur et sauvegarder
-      existingUser.sessionsID.push(req.body.sessionID);
-      sessionObj.formateurs.push(existingUser._id);
-      await Promise.all([existingUser.save(), sessionObj.save()]);
-      return res.json({
-        msg: "Formateur assigned to SessionFormation successfully",
-      });
-    } else {
-      // Si le rôle de l'utilisateur n'est ni apprenant ni formateur, renvoyer un message d'erreur
-      return res.json({ msg: "Invalid user role" });
+    // Vérifiez si le groupe existe
+    const groupeObj = await Groupe.findById(groupId);
+    if (!groupeObj) {
+      return res.status(404).json({ msg: "Groupe introuvable" });
     }
+
+    // Ajoutez l'ID de l'utilisateur au tableau d'apprenants du groupe
+    groupeObj.apprenants.push(userId);
+    await groupeObj.save();
+
+    // Ajoutez l'ID du groupe à l'utilisateur
+    existingUser.groupesID = groupId; // Utilisez "=" pour assigner l'ID du groupe
+    await existingUser.save();
+
+    return res.json({ msg: "User affecté au groupe avec succès" });
   } catch (error) {
-    console.error("Error assigning user:", error);
-    return res.status(500).json({ msg: "Internal Server Error" });
+    console.error("Erreur lors de l'affectation de l'utilisateur:", error);
+    return res.status(500).json({ msg: "Erreur interne du serveur" });
   }
 });
+
 // BL Edit user
 app.put("/users", (req, res) => {
   //traitement logique
@@ -713,4 +688,88 @@ app.get("/api/demandes/chart-data", (req, res) => {
 
   // Renvoyer les données de graphique au format JSON
   res.json({ chart1Data, chart2Data });
+});
+// Endpoint pour récupérer les groupes d'un apprenant par son ID
+router.get("/groupes/:userId", (req, res) => {
+  const userId = req.params.userId;
+
+  Groupe.find({})
+    .populate("apprenants")
+    .exec((err, groupes) => {
+      if (err) {
+        console.error("Erreur lors de la récupération des groupes :", err);
+        res.status(500).send("Erreur lors de la récupération des groupes");
+        return;
+      }
+
+      const groupesUtilisateur = groupes.filter((groupe) => {
+        return groupe.apprenants.some((apprenant) =>
+          apprenant._id.equals(userId)
+        );
+      });
+
+      res.json(groupesUtilisateur);
+    });
+});
+router.get("/sessionsFormations", async (req, res) => {
+  try {
+    const userId = req.query.userId;
+    const user = await User.findById(userId).populate("groupesID").exec();
+
+    if (!user) {
+      return res.status(404).json({ error: "Utilisateur non trouvé" });
+    }
+
+    const groupesID = user.groupesID.map((groupe) => groupe._id);
+
+    const sessions = await SessionFormation.find({
+      groupesID: { $in: groupesID },
+    })
+      .populate("groupesID")
+      .exec();
+
+    res.json({ sessions });
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des sessions de formation:",
+      error
+    );
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+router.get("/formations", async (req, res) => {
+  try {
+    const userId = req.query.userId;
+    const user = await User.findById(userId).populate("groupesID").exec();
+
+    if (!user) {
+      return res.status(404).json({ error: "Utilisateur non trouvé" });
+    }
+
+    const groupesID = user.groupesID.map((groupe) => groupe._id);
+
+    const formations = await Formation.find({
+      groupesID: { $in: groupesID },
+    })
+      .populate("groupesID")
+      .exec();
+
+    res.json({ formations });
+  } catch (error) {
+    console.error(
+      "Erreur lors de la récupération des formations basées sur les groupes:",
+      error
+    );
+    res.status(500).json({ error: "Erreur serveur" });
+  }
+});
+router.get("/cours/groupe/:groupId", (req, res) => {
+  const groupId = req.params.groupId;
+  Cours.find({ groupeID: groupId })
+    .then((cours) => {
+      res.json({ cours: cours });
+    })
+    .catch((error) => {
+      res.status(500).json({ error: error.message });
+    });
 });

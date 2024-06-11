@@ -1,4 +1,3 @@
-<p>add-groupe works!</p>
 <section id="hero" class="clearfix">
   <div class="container" data-aos="fade-up">
     <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
@@ -10,39 +9,52 @@
     </div>
   </div>
 </section>
-<div class="site-section">
+<!-- <div class="site-section">
   <div class="container">
     <div class="row">
       <div class="col-lg-7">
         <form #groupeForm="ngForm" (ngSubmit)="addGroupe()">
           <div class="form-group mb-3">
-            <label class="form-label">Nom du groupe </label>
-
+            <label class="form-label">Nom du groupe</label>
             <input
               type="text"
               [(ngModel)]="groupe.name"
-              [ngModelOptions]="{ standalone: true }"
+              name="name"
               class="form-control"
+              required
             />
           </div>
-          <label class="form-label">Nom du formateur</label>
-
           <div class="form-group mb-3">
-            <input
-              type="text"
+            <label class="form-label">Nom du formateur</label>
+            <select
               [(ngModel)]="groupe.trainerName"
-              [ngModelOptions]="{ standalone: true }"
+              name="trainerName"
               class="form-control"
-            />
+              (change)="selectGroupe($event)"
+              required
+            >
+              <option value="">
+                Veuillez sélectionner le nom du formateur
+              </option>
+              <ng-container *ngFor="let user of usersTab">
+                <option
+                  *ngIf="isUserAllowed(user.role)"
+                  [value]="user._id"
+                  style="color: black"
+                >
+                  {{ user.firstName }}-{{ user.lastName }}
+                </option>
+              </ng-container>
+            </select>
           </div>
           <div class="form-group mb-3">
-            <label class="form-label">Nombre d'apprenant </label>
-
+            <label class="form-label">Nombre d'apprenant</label>
             <input
               type="number"
               [(ngModel)]="groupe.nbLearner"
-              [ngModelOptions]="{ standalone: true }"
+              name="nbLearner"
               class="form-control"
+              required
             />
           </div>
 
@@ -50,10 +62,98 @@
             <input
               type="submit"
               class="btn btn-primary py-3 px-5"
-              value="Ajouter "
+              value="Ajouter"
             />
           </div>
         </form>
+      </div>
+    </div>
+  </div>
+</div> -->
+<div class="site-section" style="padding: 50px 0">
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+        <div class="card shadow-sm" style="border: none; border-radius: 10px">
+          <div class="card-body">
+            <h4
+              class="card-title mb-4"
+              style="font-weight: bold; text-align: center"
+            >
+              Ajouter un Groupe
+            </h4>
+            <form #groupeForm="ngForm" (ngSubmit)="addGroupe()">
+              <div class="form-group mb-3">
+                <label class="form-label" style="font-weight: bold"
+                  >Nom du groupe</label
+                >
+                <input
+                  type="text"
+                  [(ngModel)]="groupe.name"
+                  name="name"
+                  class="form-control"
+                  placeholder="Entrez le nom du groupe"
+                  required
+                  style="border-radius: 0; box-shadow: none; border-color: #ddd"
+                />
+              </div>
+              <div class="form-group mb-3">
+                <label class="form-label" style="font-weight: bold"
+                  >Nom du formateur</label
+                >
+                <select
+                  [(ngModel)]="groupe.trainerName"
+                  name="trainerName"
+                  class="form-control"
+                  (change)="selectGroupe($event)"
+                  required
+                  style="border-radius: 0; box-shadow: none; border-color: #ddd"
+                >
+                  <option value="" disabled selected>
+                    Veuillez sélectionner le nom du formateur
+                  </option>
+                  <ng-container *ngFor="let user of usersTab">
+                    <option
+                      *ngIf="isUserAllowed(user.role)"
+                      [value]="user._id"
+                      style="color: black"
+                    >
+                      {{ user.firstName }} {{ user.lastName }}
+                    </option>
+                  </ng-container>
+                </select>
+              </div>
+              <div class="form-group mb-3">
+                <label class="form-label" style="font-weight: bold"
+                  >Nombre d'apprenants</label
+                >
+                <input
+                  type="number"
+                  [(ngModel)]="groupe.nbLearner"
+                  name="nbLearner"
+                  class="form-control"
+                  placeholder="Entrez le nombre d'apprenants"
+                  required
+                  style="border-radius: 0; box-shadow: none; border-color: #ddd"
+                />
+              </div>
+              <div class="form-group text-center">
+                <button
+                  type="submit"
+                  class="btn btn-primary px-5 py-2"
+                  style="
+                    background-color: #007bff;
+                    border-color: #007bff;
+                    border-radius: 50px;
+                  "
+                >
+                  <i class="fas fa-plus-circle" style="margin-right: 5px"></i>
+                  Ajouter
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
       </div>
     </div>
   </div>

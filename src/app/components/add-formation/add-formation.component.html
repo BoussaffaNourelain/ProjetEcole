@@ -1,1 +1,87 @@
-<p>add-formation works!</p>
+<section id="hero" class="clearfix">
+  <div class="container" data-aos="fade-up">
+    <div class="hero-img" data-aos="zoom-out" data-aos-delay="200">
+      <img src="assets/img/hero-img.svg" alt="" class="img-fluid" />
+    </div>
+
+    <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
+      <h2>
+        Affecter un formateur à un groupe
+        <br /><span></span><br />
+      </h2>
+    </div>
+  </div>
+</section>
+<head>
+  <title>Carte d'Informations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffffff; /* Fond blanc */
+    }
+    .card {
+      background-color: #f5f5f5; /* Couleur grisâtre pour la carte */
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 350px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 3px solid #f0f0f0;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: #333;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #777;
+      font-weight: normal;
+      font-size: 18px;
+    }
+    .card p {
+      margin: 10px 0;
+      color: #555;
+      font-size: 16px;
+    }
+
+    /* Autres styles */
+    .card {
+      /* Autres propriétés */
+      margin-right: 50px; /* Ajout d'une marge inférieure de 20px */
+    }
+  </style>
+</head>
+<body>
+  <section *ngFor="let user of usersTab">
+    <div *ngIf="isUserAllowed(user.role)">
+      <div class="card" (click)="affiche(user._id)">
+        <img src="assets/img/avatar.webp" alt="Photo de profil" />
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <h3>Formateur</h3>
+        <p><strong>Email :</strong> {{ user.email }}</p>
+        <p><strong>Téléphone :</strong> {{ user.tel }}</p>
+      </div>
+    </div>
+  </section>
+</body>

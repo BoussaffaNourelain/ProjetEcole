@@ -20,6 +20,7 @@ const sessionFormationSchema = mongoose.Schema({
       ref: "Groupe",
     },
   ],
+  apprenants: [{ type: mongoose.Schema.Types.ObjectId, ref: "User" }],
 });
 //affect userShema to user model
 const sessionformation = mongoose.model(

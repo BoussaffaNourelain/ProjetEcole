@@ -1,54 +1,51 @@
-<section id="services" class="section-bg">
-  <div class="container" data-aos="fade-up">
+<section>
+  <div class="row justify-content-center">
     <header class="section-header">
-      <h3>Nos formations</h3>
+      <h3>Nos Formations</h3>
       <p>
-        Découvrez nos formations spécialisées conçues pour vous offrir une
-        expertise pointue dans les domaines de l'informatique les plus
-        recherchés par les entreprises d'aujourd'hui.
+        Découvrez nos formations spécialisées qui visent à vous offrir une
+        expertise approfondie dans les domaines informatiques les plus
+        recherchés par les entreprises actuelles.
       </p>
     </header>
-
-    <div class="row justify-content-center">
-      <ng-container *ngFor="let formation of formationsTab">
-        <div
-          class="col-md-3 col-lg-3 mb-4"
-          style="margin-right: 1rem"
-          data-aos="zoom-in"
-          data-aos-delay="200"
-        >
-          <div class="box">
-            <div class="icon">
-              <i
-                class="bi bi-card-checklist"
-                style="color: #007bff; margin-left: 20px"
-              ></i>
-            </div>
-            <h4 class="title">
-              <a href="">{{ formation.name }}</a>
-            </h4>
-            <p class="description">
-              Notre formation débute le {{ formation.datedebut }} et se termine
-              le {{ formation.datefin }}. Elle est conçue pour offrir une
-              expérience d'apprentissage complète et immersive en
-              {{ formation.category }}.
-            </p>
-            <h3 style="color: black; margin-left: 50px">
-              Prix: {{ formation.price }}
-            </h3>
-            <button
-              type="submit"
-              class="btn btn-lg mb-3 btn-primary"
-              style="margin-left: 50px"
-              (click)="onParticiperClick()"
-            >
-              Participer
-            </button>
+    <ng-container *ngFor="let formation of formationsTab">
+      <div
+        class="col-md-3 col-lg-3 mb-4"
+        style="margin-right: 1rem"
+        data-aos="zoom-in"
+        data-aos-delay="200"
+      >
+        <div class="box">
+          <div class="icon">
+            <i
+              class="bi bi-card-checklist"
+              style="color: #007bff; margin-left: 20px"
+            ></i>
           </div>
+          <h4 class="title">
+            <a href="">{{ formation.name }}</a>
+          </h4>
+          <p class="description">
+            Notre formation débute le {{ formation.datedebut }} et se termine le
+            {{ formation.datefin }}. Elle est conçue pour offrir une expérience
+            d'apprentissage complète et immersive en {{ formation.category }}.
+          </p>
+          <h3 style="color: black; margin-left: 50px">
+            Prix: {{ formation.price }}
+          </h3>
+          <button
+            type="submit"
+            class="btn btn-lg mb-3 btn-primary"
+            style="margin-left: 50px"
+            (click)="onParticiperClick()"
+          >
+            Participer
+          </button>
         </div>
-      </ng-container>
-    </div>
+      </div>
+    </ng-container>
   </div>
+
   <div class="container" data-aos="fade-up">
     <header class="section-header">
       <h3>Nos sessions de formation</h3>

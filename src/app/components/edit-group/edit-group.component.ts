@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { GroupeService } from 'src/app/services/groupe.service';
 
 @Component({
@@ -13,7 +13,11 @@ export class EditGroupComponent {
   groupForm!: FormGroup;
   groupe: any;
   groupId: any;
-  constructor(private route: ActivatedRoute, private gService: GroupeService) {}
+  constructor(
+    private route: ActivatedRoute,
+    private gService: GroupeService,
+    private router: Router
+  ) {}
   ngOnInit(): void {
     // Récupérer l'ID de l'utilisateur depuis l'URL
     this.route.params.subscribe((params) => {
@@ -30,5 +34,6 @@ export class EditGroupComponent {
       console.log('Modification réussie :', response);
       // Vous pouvez ajouter une redirection ou un message de succès ici
     });
+    this.router.navigate([`dashboredAgentAdministratif`]);
   }
 }

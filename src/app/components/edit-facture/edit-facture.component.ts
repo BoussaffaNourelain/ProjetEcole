@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { FacteurService } from 'src/app/services/facteur.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -19,7 +19,8 @@ export class EditFactureComponent {
   constructor(
     private route: ActivatedRoute,
     private fService: FacteurService,
-    private uService: UserService
+    private uService: UserService,
+    private router: Router
   ) {}
   ngOnInit(): void {
     // Récupérer l'ID de l'utilisateur depuis l'URL
@@ -42,6 +43,7 @@ export class EditFactureComponent {
       console.log('Modification réussie :', response);
       // Vous pouvez ajouter une redirection ou un message de succès ici
     });
+    this.router.navigate([`dashboredFinancier`]);
   }
 
   selectUser(evt: any) {

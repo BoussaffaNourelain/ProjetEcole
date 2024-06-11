@@ -6,84 +6,83 @@
 
     <div class="hero-info" data-aos="zoom-in" data-aos-delay="100">
       <h2>
-        Affecter un apprenant à un groupe ou plusieurs groupes
+        Affecter un apprenant à un groupe
         <br /><span></span><br />
       </h2>
     </div>
   </div>
 </section>
-<div class="site-section">
-  <div class="container">
-    <div class="row">
-      <div class="col-lg-7">
-        <form #apprenantForm="ngForm" (ngSubmit)="addApprenant()">
-          <div class="form-group mb-3">
-            <label class="form-label">Nom</label>
 
-            <input
-              type="text"
-              [(ngModel)]="user.firstName"
-              [ngModelOptions]="{ standalone: true }"
-              class="form-control"
-            />
-          </div>
-          <label class="form-label">Prénom </label>
+<head>
+  <title>Carte d'Informations</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #ffffff; /* Fond blanc */
+    }
+    .card {
+      background-color: #f5f5f5; /* Couleur grisâtre pour la carte */
+      padding: 30px;
+      border-radius: 15px;
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+      max-width: 350px;
+      text-align: center;
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.2);
+    }
+    .card img {
+      width: 120px;
+      height: 120px;
+      border-radius: 50%;
+      margin-bottom: 20px;
+      border: 3px solid #f0f0f0;
+      display: block;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .card h2 {
+      margin-bottom: 10px;
+      font-size: 24px;
+      color: #333;
+    }
+    .card h3 {
+      margin-top: 0;
+      margin-bottom: 20px;
+      color: #777;
+      font-weight: normal;
+      font-size: 18px;
+    }
+    .card p {
+      margin: 10px 0;
+      color: #555;
+      font-size: 16px;
+    }
 
-          <div class="form-group mb-3">
-            <input
-              type="text"
-              [(ngModel)]="user.lastName"
-              [ngModelOptions]="{ standalone: true }"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group mb-3">
-            <label class="form-label">Email </label>
-
-            <input
-              type="email"
-              [(ngModel)]="user.email"
-              [ngModelOptions]="{ standalone: true }"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group mb-3">
-            <label class="form-label">Téléphone</label>
-
-            <input
-              type="tel"
-              [(ngModel)]="user.tel"
-              [ngModelOptions]="{ standalone: true }"
-              class="form-control"
-            />
-          </div>
-          <div class="form-group mb-3">
-            <select
-              name=""
-              id=""
-              class="form-control"
-              (change)="selectGroupe($event)"
-            >
-              <option value="">Veuillez sélectionner le groupe</option>
-              <option
-                [value]="g._id"
-                style="color: black"
-                *ngFor="let g of groupesTab"
-              >
-                {{ g.name }}
-              </option>
-            </select>
-          </div>
-
-          <div class="form-group">
-            <input
-              type="submit"
-              class="btn btn-primary py-3 px-5"
-              value="Affecter"
-            />
-          </div>
-        </form>
+    /* Autres styles */
+    .card {
+      /* Autres propriétés */
+      margin-right: 50px; /* Ajout d'une marge inférieure de 20px */
+    }
+  </style>
+</head>
+<body>
+  <section *ngFor="let user of usersTab">
+    <div *ngIf="isUserAllowed(user.role)">
+      <div class="card" (click)="affiche(user._id)">
+        <img src="assets/img/avatar.webp" alt="Photo de profil" />
+        <h2>{{ user.firstName }} {{ user.lastName }}</h2>
+        <h3>Apprenant</h3>
+        <p><strong>Email :</strong> {{ user.email }}</p>
+        <p><strong>Téléphone :</strong> {{ user.tel }}</p>
       </div>
     </div>
-  </div>
-</div>
+  </section>
+</body>

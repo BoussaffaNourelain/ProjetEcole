@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FormationService } from 'src/app/services/formation.service';
 import { GroupeService } from 'src/app/services/groupe.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-formation-group',
@@ -13,16 +14,22 @@ export class AddFormationGroupComponent implements OnInit {
   formation: any = {};
   groupesTab: any = [];
   idGroupe: any;
+  formationsTab: any = [];
 
   constructor(
     private gService: GroupeService,
-    private fService: FormationService
+    private fService: FormationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
     this.gService.getAllGroupes().subscribe((reponse) => {
       console.log('here response from BE', reponse.groupes);
       this.groupesTab = reponse.groupes;
+    });
+    this.fService.getAllFormations().subscribe((data) => {
+      console.log('Here data from service ', data.formations);
+      this.formationsTab = data.formations;
     });
   }
 
@@ -58,10 +65,14 @@ export class AddFormationGroupComponent implements OnInit {
         // ou effectuer d'autres actions en conséquence
       }
     });
+    this.router.navigate([`dashboredAgentAdministratif`]);
   }
 
   selectGroupe(evt: any) {
     console.log('here event id', evt.target.value);
     this.idGroupe = evt.target.value;
+  }
+  affectation(id: string) {
+    this.router.navigate([`affectationFormationGroup${id}`]);
   }
 }

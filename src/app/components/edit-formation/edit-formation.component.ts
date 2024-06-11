@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 import { SessionFormationService } from 'src/app/services/session-formation.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-edit-formation',
@@ -14,7 +14,8 @@ export class EditFormationComponent {
   sessionId: any;
   constructor(
     private route: ActivatedRoute,
-    private sService: SessionFormationService
+    private sService: SessionFormationService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -37,5 +38,6 @@ export class EditFormationComponent {
         console.log('Modification réussie :', response);
         // Vous pouvez ajouter une redirection ou un message de succès ici
       });
+    this.router.navigate([`dashboredAgentAdministratif`]);
   }
 }

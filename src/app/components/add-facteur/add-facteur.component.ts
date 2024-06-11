@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { FacteurService } from 'src/app/services/facteur.service';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
   selector: 'app-add-facteur',
@@ -10,12 +11,13 @@ import { FacteurService } from 'src/app/services/facteur.service';
 export class AddFacteurComponent implements OnInit {
   factureForm!: FormGroup;
   facture: any = {};
-  constructor(private fService: FacteurService) {}
+  constructor(private fService: FacteurService, private router: Router) {}
 
   ngOnInit(): void {}
   addFacture() {
     this.fService.addFactures(this.facture).subscribe((response) => {
       console.log('here response ', response.msg);
     });
+    this.router.navigate([`dashboredFinancier`]);
   }
 }

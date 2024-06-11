@@ -92,7 +92,7 @@
             >Gestion et controle des apprenants</a
           >
           <div class="dropdown-menu m-0">
-            <a
+            <!-- <a
               routerLink="ajouterAdmin"
               class="dropdown-item"
               *ngIf="isLoggedIn() && decodedToken.role == 'admin'"
@@ -109,25 +109,7 @@
               class="dropdown-item"
               *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
               >Ajouter un financier</a
-            >
-            <a
-              routerLink="affecterApprenantGroupe"
-              class="dropdown-item"
-              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
-              >Affecter un apprenant à un ou plusieurs groupes</a
-            >
-            <a
-              routerLink="affecterFormateurFormation"
-              class="dropdown-item"
-              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
-              >Affecter un formateur à une formation</a
-            >
-            <a
-              routerLink="affecterFormateurSession"
-              class="dropdown-item"
-              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
-              >Affecter un formateur à une ou plusieurs sessions de formation</a
-            >
+            > -->
             <a
               routerLink="ajouterGroupe"
               class="dropdown-item"
@@ -165,6 +147,25 @@
               >Ajouter une demande de formation</a
             >
             <a
+              routerLink="affecterApprenantGroupe"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Affecter un apprenant à un ou plusieurs groupes</a
+            >
+            <a
+              routerLink="affecterFormateurFormation"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Affecter un formateur à un groupe</a
+            >
+            <!-- <a
+              routerLink="affecterFormateurSession"
+              class="dropdown-item"
+              *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
+              >Affecter un formateur à une ou plusieurs sessions de formation</a
+            > -->
+
+            <a
               routerLink="affecterFormationGroup"
               class="dropdown-item"
               *ngIf="isLoggedIn() && decodedToken.role == 'agentAdministratif'"
@@ -192,6 +193,11 @@
         <li>
           <a class="nav-link scrollto" routerLink="conatctez-Nous"
             >Contactez nous</a
+          >
+        </li>
+        <li>
+          <a class="nav-link scrollto" routerLink="nosStatistique"
+            >Nos statistiques</a
           >
         </li>
         <li *ngIf="isLoggedIn()">

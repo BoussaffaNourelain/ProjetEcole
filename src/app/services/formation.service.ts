@@ -30,4 +30,9 @@ export class FormationService {
   getFormationsByUserId(userId: string) {
     return this.httpClient.get<any>(`${this.url}?userId=${userId}`);
   }
+  getFormationsByGroupesId(groupesId: any[]) {
+    return this.httpClient.get<{ formations: any }>(
+      `${this.url}?groupesId=${groupesId.join(',')}`
+    );
+  }
 }
